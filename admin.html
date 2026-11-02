@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b35">
+<title>الإدارة المركزية | SZ11</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#17233d}
+header{background:#101b35;color:white;padding:19px 6%;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#d8b66a}
+.brand{font-size:11px;color:#cbd2df}
+header a{color:white;text-decoration:none;font-size:13px}
+.container{max-width:1100px;margin:30px auto;padding:0 17px}
+.welcome{margin-bottom:25px}
+.welcome h1{font-size:25px;margin-bottom:7px}
+.welcome p{font-size:13px;color:#81899a}
+.warning{background:#fff8e8;border:1px solid #eddbb1;color:#896a2d;padding:13px;border-radius:9px;margin:20px 0;font-size:13px;line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:25px}
+.stat{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:20px}
+.stat p{color:#81899a;font-size:13px;margin-bottom:10px}
+.stat strong{font-size:26px}
+.section{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:21px;margin-bottom:20px}
+.section h2{font-size:18px;margin-bottom:17px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:500px}
+th,td{padding:13px;text-align:right;border-bottom:1px solid #edf0f4;font-size:13px}
+th{color:#81899a;background:#fafbfc}
+.empty{text-align:center;color:#81899a;padding:24px;font-size:13px}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.action{border:1px solid #e8eaf0;border-radius:10px;padding:17px}
+.action h3{font-size:15px;margin-bottom:8px}
+.action p{font-size:12px;color:#81899a;line-height:1.7}
+.action button{margin-top:12px;padding:9px 13px;background:#101b35;color:white;border:0;border-radius:7px}
+#notice{margin-top:14px;color:#8b6926;font-size:13px}
+footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
+</style>
+</head>
+<body>
+
+<header>
+<div>
+  <div class="logo">DOKKANI<span>.</span></div>
+  <div class="brand">SZ11 CONTROL CENTER</div>
+</div>
+<a href="index.html">عرض الموقع</a>
+</header>
+
+<main class="container">
+
+<section class="welcome">
+  <h1>مركز الإدارة المركزية 👑</h1>
+  <p>إدارة ومراقبة منصة DOKKANI بواسطة SZ11.</p>
+</section>
+
+<div class="warning">
+  ⚠️ هذه لوحة تصميم أولية. لا توجد بعد قاعدة بيانات أو صلاحيات إدارية حقيقية. لا تستخدمها لإدارة مدفوعات أو حسابات فعلية قبل تأمين النظام.
+</div>
+
+<section class="stats">
+  <div class="stat">
+    <p>إجمالي البائعين</p>
+    <strong>0</strong>
+  </div>
+  <div class="stat">
+    <p>المتاجر المنشأة</p>
+    <strong>0</strong>
+  </div>
+  <div class="stat">
+    <p>المتاجر المفعلة</p>
+    <strong>0</strong>
+  </div>
+  <div class="stat">
+    <p>المداخيل</p>
+    <strong>0 DH</strong>
+  </div>
+</section>
+
+<section class="section">
+  <h2>إدارة المنصة</h2>
+  <div class="actions">
+    <div class="action">
+      <h3>👥 البائعون</h3>
+      <p>متابعة حسابات البائعين المسجلين في المنصة.</p>
+      <button onclick="showNotice('إدارة البائعين ستُربط بقاعدة البيانات.')">إدارة البائعين</button>
+    </div>
+    <div class="action">
+      <h3>🏪 المتاجر</h3>
+      <p>مراقبة المتاجر وحالة تفعيلها.</p>
+      <button onclick="showNotice('إدارة المتاجر ستُفعّل بعد بناء النظام.')">إدارة المتاجر</button>
+    </div>
+    <div class="action">
+      <h3>💳 المدفوعات</h3>
+      <p>متابعة عمليات الدفع والتحويلات.</p>
+      <button onclick="showNotice('سجل المدفوعات غير متصل حالياً.')">عرض المدفوعات</button>
+    </div>
+    <div class="action">
+      <h3>📊 الإحصائيات</h3>
+      <p>عرض أداء المنصة ومؤشرات النمو.</p>
+      <button onclick="showNotice('الإحصائيات ستظهر بعد ربط البيانات الحقيقية.')">الإحصائيات</button>
+    </div>
+  </div>
+  <div id="notice" aria-live="polite"></div>
+</section>
+
+<section class="section">
+  <h2>آخر المتاجر</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>اسم المتجر</th>
+          <th>صاحب المتجر</th>
+          <th>تاريخ الإنشاء</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="4" class="empty">لا توجد متاجر مسجلة حتى الآن.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>DOKKANI © 2026 — SZ11 ADMINISTRATION</footer>
+
+<script>
+function showNotice(message){
+  document.getElementById("notice").textContent=message;
+}
+</script>
+
+</body>
+</html>
