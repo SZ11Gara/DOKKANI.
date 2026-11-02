@@ -2,239 +2,142 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101b35">
-<title>إنشاء حساب | DOKKANI</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Tahoma, Arial, sans-serif;
-  background: #f4f6fa;
-  color: #17233d;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  background: #101b35;
-  padding: 18px 7%;
-}
-
-.logo {
-  color: white;
-  font-size: 27px;
-  font-weight: bold;
-}
-
-.logo span {
-  color: #d8b66a;
-}
-
-.brand {
-  color: #cbd2df;
-  font-size: 11px;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 35px 16px;
-}
-
-.card {
-  background: white;
-  width: 100%;
-  max-width: 440px;
-  padding: 35px 27px;
-  border-radius: 17px;
-  border: 1px solid #e7e9ef;
-  box-shadow: 0 12px 35px rgba(16,27,53,.06);
-}
-
-.card h1 {
-  font-size: 25px;
-  margin-bottom: 8px;
-}
-
-.description {
-  color: #81899a;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
-
-label {
-  display: block;
-  margin: 15px 0 7px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #dfe3eb;
-  border-radius: 9px;
-  font-size: 15px;
-  outline: none;
-  background: #fff;
-}
-
-input:focus {
-  border-color: #c4a253;
-  box-shadow: 0 0 0 3px rgba(196,162,83,.12);
-}
-
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 23px;
-  border: none;
-  border-radius: 9px;
-  background: #d8b66a;
-  color: #101b35;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
-
-.message {
-  display: none;
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.7;
-}
-
-.error {
-  display: block;
-  background: #fff0f0;
-  color: #a12b2b;
-}
-
-.success {
-  display: block;
-  background: #effaf2;
-  color: #216b37;
-}
-
-.login {
-  text-align: center;
-  margin-top: 22px;
-  font-size: 14px;
-  color: #7b8494;
-}
-
-.login a {
-  color: #a17b30;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-footer {
-  background: #101b35;
-  color: #cbd2df;
-  padding: 18px;
-  text-align: center;
-  font-size: 12px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب | DOKKANI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: #0b1424;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px;
+      border: 1px solid #b99750;
+      border-radius: 18px;
+      background: #142238;
+    }
+    h1 { text-align: center; color: #d6b568; }
+    p { text-align: center; color: #c5cbd5; }
+    label { display: block; margin: 16px 0 7px; }
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 9px;
+      border: 1px solid #536176;
+      background: #0b1424;
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: 0;
+      border-radius: 9px;
+      background: #d6b568;
+      color: #111827;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 16px;
+      line-height: 1.7;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+    a { color: #d6b568; }
+  </style>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">DOKKANI<span>.</span></div>
-  <div class="brand">A PROJECT BY SZ11</div>
-</header>
-
-<main>
-  <section class="card">
-    <h1>أنشئ حسابك</h1>
-    <p class="description">ابدأ رحلتك التجارية مع DOKKANI.</p>
+  <main class="card">
+    <h1>DOKKANI</h1>
+    <p>أنشئ حسابك وابدأ متجرك الإلكتروني</p>
 
     <form id="registerForm">
-      <label for="name">الاسم الكامل</label>
-      <input id="name" type="text" placeholder="أدخل اسمك الكامل" required>
+      <label for="name">اسم البائع</label>
+      <input id="name" type="text" required minlength="2"
+             placeholder="اسمك الكامل">
 
       <label for="email">البريد الإلكتروني</label>
-      <input id="email" type="email" placeholder="example@email.com" required>
+      <input id="email" type="email" required
+             placeholder="example@email.com">
 
       <label for="password">كلمة المرور</label>
-      <input id="password" type="password" placeholder="8 أحرف على الأقل" minlength="8" required>
+      <input id="password" type="password" required minlength="6"
+             placeholder="6 أحرف على الأقل">
 
-      <label for="confirm">تأكيد كلمة المرور</label>
-      <input id="confirm" type="password" placeholder="أعد كتابة كلمة المرور" required>
-
-      <button id="submitButton" type="submit">إنشاء الحساب</button>
-      <div id="message" class="message" role="status"></div>
+      <button id="submitBtn" type="submit">إنشاء الحساب</button>
     </form>
 
-    <p class="login">
-      لديك حساب بالفعل؟
-      <a href="login.html">تسجيل الدخول</a>
-    </p>
-  </section>
-</main>
+    <div id="message" role="status"></div>
+    <p>لديك حساب؟ <a href="login.html">تسجيل الدخول</a></p>
+  </main>
 
-<footer>
-  DOKKANI © 2026 — Developed by SZ11
-</footer>
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import {
+      createUserWithEmailAndPassword,
+      updateProfile,
+      sendEmailVerification
+    } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-<script>
-const form = document.getElementById("registerForm");
-const message = document.getElementById("message");
-const button = document.getElementById("submitButton");
+    const form = document.getElementById("registerForm");
+    const message = document.getElementById("message");
+    const button = document.getElementById("submitBtn");
 
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirm = document.getElementById("confirm").value;
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-  message.className = "message";
+      button.disabled = true;
+      button.textContent = "جارٍ إنشاء الحساب...";
+      message.textContent = "";
 
-  if (name.length < 3) {
-    message.textContent = "الاسم يجب أن يتكون من 3 أحرف على الأقل.";
-    message.classList.add("error");
-    return;
-  }
+      try {
+        const result = await createUserWithEmailAndPassword(
+          auth, email, password
+        );
 
-  if (password.length < 8) {
-    message.textContent = "كلمة المرور يجب أن تتكون من 8 أحرف على الأقل.";
-    message.classList.add("error");
-    return;
-  }
+        await updateProfile(result.user, {
+          displayName: name
+        });
 
-  if (password !== confirm) {
-    message.textContent = "كلمتا المرور غير متطابقتين.";
-    message.classList.add("error");
-    return;
-  }
+        await sendEmailVerification(result.user);
 
-  message.textContent =
-    "تم التحقق من البيانات محلياً، لكن التسجيل الحقيقي غير مفعّل بعد. سنربط الصفحة بنظام حسابات آمن في المرحلة التالية.";
+        message.textContent =
+          "تم إنشاء الحساب! أرسلنا رسالة تأكيد إلى بريدك الإلكتروني. تحقق منه ثم سجّل الدخول.";
+        form.reset();
 
-  message.classList.add("success");
-});
-</script>
+      } catch (error) {
+        const errors = {
+          "auth/email-already-in-use": "هذا البريد مسجل من قبل.",
+          "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
+          "auth/weak-password": "كلمة المرور ضعيفة. استخدم 6 أحرف على الأقل.",
+          "auth/network-request-failed": "تحقق من اتصال الإنترنت."
+        };
 
+        message.textContent =
+          errors[error.code] || "حدث خطأ: " + error.message;
+
+      } finally {
+        button.disabled = false;
+        button.textContent = "إنشاء الحساب";
+      }
+    });
+  </script>
 </body>
 </html>
+
