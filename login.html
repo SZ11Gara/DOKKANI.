@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b35">
+<title>تسجيل الدخول | DOKKANI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#17233d;min-height:100vh;display:flex;flex-direction:column}
+header{background:#101b35;padding:18px 7%}
+.logo{color:white;font-size:27px;font-weight:bold}
+.logo span{color:#d8b66a}
+.brand{color:#cbd2df;font-size:11px}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:30px 16px}
+.card{background:white;width:100%;max-width:430px;padding:35px 27px;border:1px solid #e7e9ef;border-radius:17px;box-shadow:0 12px 35px rgba(16,27,53,.06)}
+h1{font-size:26px;margin-bottom:8px}
+.desc{color:#81899a;font-size:14px;margin-bottom:25px}
+label{display:block;margin:16px 0 7px;font-size:14px;font-weight:bold}
+input{width:100%;padding:14px;border:1px solid #dfe3eb;border-radius:9px;font-size:15px;outline:none}
+input:focus{border-color:#c4a253;box-shadow:0 0 0 3px rgba(196,162,83,.12)}
+button{width:100%;padding:14px;margin-top:23px;border:0;border-radius:9px;background:#d8b66a;color:#101b35;font-size:16px;font-weight:bold;cursor:pointer}
+.message{display:none;margin-top:15px;padding:12px;border-radius:8px;font-size:13px;line-height:1.7}
+.error{display:block;background:#fff0f0;color:#a12b2b}
+.success{display:block;background:#effaf2;color:#216b37}
+.links{text-align:center;margin-top:23px;font-size:14px;color:#7b8494;line-height:2}
+a{color:#a17b30;text-decoration:none;font-weight:bold}
+footer{background:#101b35;color:#cbd2df;padding:18px;text-align:center;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DOKKANI<span>.</span></div>
+  <div class="brand">A PROJECT BY SZ11</div>
+</header>
+
+<main>
+<section class="card">
+  <h1>مرحباً بعودتك</h1>
+  <p class="desc">سجّل الدخول للوصول إلى حسابك ومتجرك.</p>
+
+  <form id="loginForm">
+    <label for="email">البريد الإلكتروني</label>
+    <input id="email" type="email" placeholder="example@email.com" required>
+
+    <label for="password">كلمة المرور</label>
+    <input id="password" type="password" placeholder="أدخل كلمة المرور" required>
+
+    <button type="submit">تسجيل الدخول</button>
+    <div id="message" class="message" role="status"></div>
+  </form>
+
+  <div class="links">
+    ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a>
+    <br>
+    <a href="index.html">العودة إلى الصفحة الرئيسية</a>
+  </div>
+</section>
+</main>
+
+<footer>DOKKANI © 2026 — Developed by SZ11</footer>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit",function(event){
+  event.preventDefault();
+
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value;
+  const message=document.getElementById("message");
+
+  message.className="message";
+
+  if(!email || !password){
+    message.textContent="يرجى إدخال البريد الإلكتروني وكلمة المرور.";
+    message.classList.add("error");
+    return;
+  }
+
+  message.textContent="واجهة تسجيل الدخول جاهزة، لكن نظام الحسابات الحقيقي لم يتم ربطه بعد.";
+  message.classList.add("success");
+});
+</script>
+</body>
+</html>
