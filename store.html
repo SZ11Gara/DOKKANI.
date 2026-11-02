@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b35">
+<title>متجري | DOKKANI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial,sans-serif;background:#f7f8fc;color:#17233d}
+header{background:#101b35;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#d8b66a}
+header a{color:white;text-decoration:none;font-size:13px}
+.hero{background:linear-gradient(135deg,#101b35,#20395f);color:white;text-align:center;padding:55px 18px}
+.hero h1{font-size:32px;margin-bottom:10px}
+.hero p{color:#d4dbea;font-size:14px}
+.container{max-width:1050px;margin:35px auto;padding:0 17px}
+.heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:10px}
+.heading h2{font-size:22px}
+.count{color:#8b6c32;font-size:13px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.product{background:white;border:1px solid #e8eaf0;border-radius:13px;overflow:hidden}
+.product img{width:100%;height:180px;object-fit:cover;background:#eef0f4}
+.product-info{padding:16px}
+.product h3{font-size:16px;margin-bottom:8px}
+.product p{font-size:13px;color:#858d9d;line-height:1.7}
+.price{display:block;color:#a17b30;font-size:19px;font-weight:bold;margin:13px 0}
+.product button{width:100%;padding:11px;background:#101b35;color:white;border:0;border-radius:8px;font-weight:bold}
+.cart{background:white;border:1px solid #e8eaf0;border-radius:13px;margin-top:25px;padding:20px}
+.cart h2{font-size:19px;margin-bottom:12px}
+.cart p{font-size:14px;color:#81899a}
+footer{background:#101b35;color:#cbd2df;text-align:center;padding:22px;font-size:12px;margin-top:50px}
+footer span{color:#d8b66a}
+@media(max-width:500px){.hero h1{font-size:26px}.heading h2{font-size:19px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">DOKKANI<span>.</span></div>
+    <small style="color:#cbd2df;font-size:10px">ONLINE STORE</small>
+  </div>
+  <a href="index.html">الصفحة الرئيسية</a>
+</header>
+
+<section class="hero">
+  <h1 id="storeName">متجر جديد</h1>
+  <p id="storeDescription">مرحباً بكم في متجرنا، اكتشفوا منتجاتنا.</p>
+</section>
+
+<main class="container">
+  <div class="heading">
+    <h2>منتجاتنا</h2>
+    <span class="count" id="productCount">0 منتجات</span>
+  </div>
+
+  <div class="products" id="products">
+    <div class="product">
+      <img src="https://placehold.co/500x350/f0f1f5/17233d?text=Product" alt="صورة المنتج">
+      <div class="product-info">
+        <h3>منتج تجريبي</h3>
+        <p>سيتم عرض المنتجات الحقيقية هنا بعد ربط لوحة البائع.</p>
+        <span class="price">0 DH</span>
+        <button type="button" onclick="alert('الطلب غير مفعّل حالياً')">اطلب الآن</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="cart">
+    <h2>🛒 سلة التسوق</h2>
+    <p>سلة التسوق ستصبح فعّالة عند ربط نظام المنتجات والطلبات.</p>
+  </section>
+</main>
+
+<footer>
+  <p>هذا المتجر يعمل عبر <span>DOKKANI</span></p>
+  <p>Developed by SZ11 © 2026</p>
+</footer>
+
+</body>
+</html>
