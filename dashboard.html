@@ -3,124 +3,183 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101b35">
-<title>لوحة التحكم | DOKKANI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة البائع | DOKKANI</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#17233d}
-header{background:#101b35;color:white;padding:17px 6%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:25px;font-weight:bold}
-.logo span{color:#d8b66a}
-.brand{font-size:11px;color:#cbd2df}
-.container{max-width:1100px;margin:30px auto;padding:0 18px}
-.welcome{margin-bottom:25px}
-.welcome h1{font-size:26px;margin-bottom:6px}
-.welcome p{color:#81899a;font-size:14px}
-.status{background:#fff8e8;color:#8b6926;padding:12px 15px;border:1px solid #eddbb1;border-radius:10px;margin:20px 0;font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px;margin-bottom:25px}
-.stat{background:white;border:1px solid #e8eaf0;border-radius:13px;padding:20px}
-.stat p{color:#81899a;font-size:13px;margin-bottom:9px}
-.stat strong{font-size:25px;color:#17233d}
-.section{background:white;border:1px solid #e8eaf0;border-radius:13px;padding:22px;margin-bottom:20px}
-.section h2{font-size:18px;margin-bottom:16px}
-.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.action{padding:17px;border:1px solid #e6e9f0;border-radius:10px;text-align:right;background:#fff}
-.action strong{display:block;margin-bottom:5px}
-.action p{font-size:12px;color:#81899a}
-.action button{margin-top:12px;background:#101b35;color:white;border:0;padding:9px 15px;border-radius:7px}
-.empty{text-align:center;padding:25px;color:#81899a;font-size:14px}
-footer{text-align:center;padding:22px;color:#8991a0;font-size:12px}
-a{color:inherit;text-decoration:none}
-@media(max-width:500px){.welcome h1{font-size:22px}.container{margin-top:22px}.section{padding:17px}}
+*{box-sizing:border-box}
+body{margin:0;background:#0b1424;color:white;font-family:Arial,sans-serif;padding:20px}
+.container{max-width:650px;margin:35px auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{color:#d6b568}
+.card{background:#142238;border:1px solid #b99750;border-radius:16px;padding:22px;margin-top:22px}
+label{display:block;margin:15px 0 8px}
+input{width:100%;padding:14px;border-radius:8px;border:1px solid #536176;background:#0b1424;color:white;font-size:16px}
+button{padding:13px 18px;border:0;border-radius:8px;background:#d6b568;color:#111827;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5}
+#message{line-height:1.8;overflow-wrap:anywhere;margin-top:15px}
+.muted{color:#bdc6d5}
+.store{border-top:1px solid #536176;margin-top:20px;padding-top:15px}
+a{color:#d6b568}
 </style>
 </head>
 <body>
-
+<div class="container">
 <header>
-  <div>
-    <div class="logo">DOKKANI<span>.</span></div>
-    <div class="brand">SELLER DASHBOARD | SZ11</div>
-  </div>
-  <a href="index.html">الرئيسية</a>
+  <h1>DOKKANI</h1>
+  <button id="logout">تسجيل الخروج</button>
 </header>
 
-<main class="container">
-  <section class="welcome">
-    <h1>مرحباً بك في لوحة التحكم 👋</h1>
-    <p>من هنا يمكنك إدارة متجرك ومتابعة نشاطك التجاري.</p>
-  </section>
-
-  <div class="status">
-    ⚠️ متجرك غير مفعّل حالياً. ستتمكن من تفعيله بعد ربط الحسابات ونظام الدفع.
+<div class="card">
+  <h2>مرحباً بك في لوحة البائع</h2>
+  <p class="muted" id="account">جارٍ التحقق من الحساب...</p>
+  <div id="storeArea" hidden>
+    <h3>متجرك الإلكتروني</h3>
+    <div class="store">
+      <p id="storeName"></p>
+      <p id="storeSlug"></p>
+      <p class="muted">تم حفظ بيانات متجرك في Firestore.</p>
+    </div>
   </div>
+</div>
 
-  <section class="stats">
-    <div class="stat">
-      <p>عدد المنتجات</p>
-      <strong>0</strong>
-    </div>
-    <div class="stat">
-      <p>الطلبات</p>
-      <strong>0</strong>
-    </div>
-    <div class="stat">
-      <p>المبيعات</p>
-      <strong>0 DH</strong>
-    </div>
-    <div class="stat">
-      <p>حالة المتجر</p>
-      <strong style="font-size:17px;color:#b28d42">غير مفعّل</strong>
-    </div>
-  </section>
+<div class="card" id="createArea" hidden>
+  <h2>إنشاء متجرك</h2>
+  <form id="storeForm">
+    <label for="name">اسم المتجر</label>
+    <input id="name" required minlength="2" maxlength="50"
+           placeholder="مثلاً: متجر الأناقة">
 
-  <section class="section">
-    <h2>إدارة متجرك</h2>
-    <div class="actions">
-      <div class="action">
-        <strong>📦 المنتجات</strong>
-        <p>إضافة المنتجات وتعديلها وحذفها.</p>
-        <button type="button" onclick="showMessage('إدارة المنتجات ستُفعّل في المرحلة القادمة.')">إدارة المنتجات</button>
-      </div>
+    <label for="slug">رابط المتجر المختصر بالإنجليزية</label>
+    <input id="slug" required minlength="3" maxlength="25"
+           pattern="[a-z0-9-]+"
+           placeholder="مثلاً: ahmed-store">
 
-      <div class="action">
-        <strong>🛍️ الطلبات</strong>
-        <p>متابعة طلبات الزبائن وحالتها.</p>
-        <button type="button" onclick="showMessage('إدارة الطلبات ستُفعّل في المرحلة القادمة.')">عرض الطلبات</button>
-      </div>
+    <button id="createBtn" type="submit">إنشاء المتجر</button>
+  </form>
+</div>
 
-      <div class="action">
-        <strong>🏪 إعدادات المتجر</strong>
-        <p>تخصيص اسم المتجر ومعلوماته.</p>
-        <button type="button" onclick="showMessage('إعدادات المتجر ستُفعّل في المرحلة القادمة.')">إعدادات المتجر</button>
-      </div>
+<div id="message" role="status"></div>
+</div>
 
-      <div class="action">
-        <strong>🔗 رابط المتجر</strong>
-        <p>الحصول على رابط خاص لمشاركته.</p>
-        <button type="button" onclick="showMessage('سيتم إنشاء رابط المتجر بعد تفعيله.')">رابط متجري</button>
-      </div>
-    </div>
-    <div id="notice" class="empty" aria-live="polite"></div>
-  </section>
+<script type="module">
+import { auth, db } from "./firebase.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
-  <section class="section">
-    <h2>آخر الطلبات</h2>
-    <div class="empty">لا توجد طلبات حالياً.</div>
-  </section>
+import {
+  doc, getDoc, setDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-  <p style="text-align:center">
-    <a href="login.html" style="color:#a17b30">العودة إلى تسجيل الدخول</a>
-  </p>
-</main>
+const account = document.getElementById("account");
+const message = document.getElementById("message");
+const createArea = document.getElementById("createArea");
+const storeArea = document.getElementById("storeArea");
+const form = document.getElementById("storeForm");
+const createBtn = document.getElementById("createBtn");
 
-<footer>DOKKANI © 2026 — Developed by SZ11</footer>
+let currentUser = null;
 
-<script>
-function showMessage(text){
-  document.getElementById("notice").textContent=text;
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  if (!user.emailVerified) {
+    await signOut(auth);
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+  account.textContent = "الحساب: " + user.email;
+
+  try {
+    const storeRef = doc(db, "stores", user.uid);
+    const storeSnap = await getDoc(storeRef);
+
+    if (storeSnap.exists()) {
+      showStore(storeSnap.data());
+    } else {
+      createArea.hidden = false;
+      message.textContent = "لم تنشئ متجراً بعد. يمكنك إنشاؤه الآن.";
+    }
+  } catch (error) {
+    message.textContent = "تعذر تحميل بيانات المتجر: " + error.message;
+  }
+});
+
+function showStore(data) {
+  createArea.hidden = true;
+  storeArea.hidden = false;
+  document.getElementById("storeName").textContent =
+    "اسم المتجر: " + data.name;
+  document.getElementById("storeSlug").textContent =
+    "الرابط المختصر: " + data.slug;
+  message.textContent = "تم تحميل بيانات متجرك بنجاح.";
 }
-</script>
 
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  if (!currentUser) return;
+
+  const name = document.getElementById("name").value.trim();
+  const slug = document.getElementById("slug").value.trim().toLowerCase();
+
+  if (!/^[a-z0-9-]{3,25}$/.test(slug)) {
+    message.textContent =
+      "اكتب الرابط بالإنجليزية، بأحرف صغيرة وأرقام وشرطة فقط.";
+    return;
+  }
+
+  createBtn.disabled = true;
+  createBtn.textContent = "جارٍ الإنشاء...";
+  message.textContent = "";
+
+  try {
+    const storeRef = doc(db, "stores", currentUser.uid);
+    const existing = await getDoc(storeRef);
+
+    if (existing.exists()) {
+      showStore(existing.data());
+      return;
+    }
+
+    const storeData = {
+      ownerId: currentUser.uid,
+      name: name,
+      slug: slug,
+      createdAt: serverTimestamp(),
+      status: "pending"
+    };
+
+    await setDoc(storeRef, storeData);
+
+    const userRef = doc(db, "users", currentUser.uid);
+    await setDoc(userRef, {
+      name: currentUser.displayName || "",
+      email: currentUser.email,
+      storeId: currentUser.uid,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+
+    showStore(storeData);
+
+  } catch (error) {
+    message.textContent = "تعذر إنشاء المتجر: " + error.message;
+  } finally {
+    createBtn.disabled = false;
+    createBtn.textContent = "إنشاء المتجر";
+  }
+});
+
+document.getElementById("logout").addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "login.html";
+});
+</script>
 </body>
 </html>
+
