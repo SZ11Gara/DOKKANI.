@@ -3,88 +3,70 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | DOKKANI</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      background: #0b1424;
-      color: white;
       font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    .card {
-      width: 100%;
-      max-width: 420px;
-      padding: 28px;
-      border: 1px solid #b99750;
-      border-radius: 18px;
-      background: #142238;
+    .box {
+      background: white;
+      width: 85%;
+      max-width: 380px;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 25px #0001;
     }
-    h1 { text-align: center; color: #d6b568; }
-    p { text-align: center; color: #c5cbd5; }
-    label { display: block; margin: 16px 0 7px; }
-    input {
+    h2 { text-align: center; color: #172554; }
+    input, button {
+      box-sizing: border-box;
       width: 100%;
       padding: 14px;
+      margin-top: 14px;
       border-radius: 9px;
-      border: 1px solid #536176;
-      background: #0b1424;
-      color: white;
       font-size: 16px;
     }
+    input { border: 1px solid #ddd; }
     button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
       border: 0;
-      border-radius: 9px;
-      background: #d6b568;
-      color: #111827;
-      font-size: 17px;
+      background: #172554;
+      color: white;
       font-weight: bold;
-      cursor: pointer;
     }
-    button:disabled { opacity: .6; }
     #message {
-      margin-top: 16px;
       text-align: center;
       line-height: 1.7;
-      overflow-wrap: anywhere;
+      margin-top: 15px;
     }
-    a { color: #d6b568; }
+    a { display: block; text-align: center; margin-top: 15px; }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>DOKKANI</h1>
-    <p>مرحباً بعودتك إلى متجرك</p>
+  <div class="box">
+    <h2>DOKKANI</h2>
+    <p style="text-align:center">تسجيل الدخول إلى حسابك</p>
 
     <form id="loginForm">
-      <label for="email">البريد الإلكتروني</label>
-      <input id="email" type="email" required
-             placeholder="example@email.com">
-
-      <label for="password">كلمة المرور</label>
-      <input id="password" type="password" required
-             placeholder="كلمة المرور">
-
+      <input id="email" type="email" placeholder="البريد الإلكتروني" required>
+      <input id="password" type="password" placeholder="كلمة المرور" required>
       <button id="loginBtn" type="submit">تسجيل الدخول</button>
     </form>
 
-    <div id="message" role="status"></div>
-
-    <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب</a></p>
-  </main>
+    <p id="message"></p>
+    <a href="register.html">إنشاء حساب جديد</a>
+  </div>
 
   <script type="module">
     import { auth } from "./firebase.js";
     import {
       signInWithEmailAndPassword,
+      sendEmailVerification,
       signOut
     } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
@@ -92,14 +74,14 @@
     const message = document.getElementById("message");
     const button = document.getElementById("loginBtn");
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
       button.disabled = true;
-      button.textContent = "جارٍ تسجيل الدخول...";
+      button.textContent = "يرجى الانتظار...";
       message.textContent = "";
 
       try {
@@ -108,29 +90,30 @@
         );
 
         if (!result.user.emailVerified) {
+          await sendEmailVerification(result.user);
           await signOut(auth);
+
+          message.style.color = "#b45309";
           message.textContent =
-            "يرجى تأكيد بريدك الإلكتروني أولاً، ثم حاول تسجيل الدخول.";
+            "أرسلنا رسالة تأكيد جديدة إلى بريدك. تحقق من صندوق الوارد ومجلد Spam.";
           return;
         }
 
+        message.style.color = "green";
         message.textContent = "تم تسجيل الدخول بنجاح!";
-
-        // لوحة البائع ستُربط في الخطوة القادمة.
         window.location.href = "dashboard.html";
 
       } catch (error) {
-        const errors = {
-          "auth/invalid-credential": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
-          "auth/user-not-found": "هذا الحساب غير موجود.",
-          "auth/wrong-password": "كلمة المرور غير صحيحة.",
-          "auth/invalid-email": "البريد الإلكتروني غير صحيح.",
-          "auth/too-many-requests": "محاولات كثيرة. حاول لاحقاً."
-        };
+        console.error(error);
+        message.style.color = "red";
 
-        message.textContent =
-          errors[error.code] || "حدث خطأ: " + error.message;
-
+        if (error.code === "auth/too-many-requests") {
+          message.textContent = "محاولات كثيرة. انتظر قليلاً ثم حاول مجدداً.";
+        } else if (error.code === "auth/invalid-credential") {
+          message.textContent = "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+        } else {
+          message.textContent = "حدث خطأ: " + error.code;
+        }
       } finally {
         button.disabled = false;
         button.textContent = "تسجيل الدخول";
