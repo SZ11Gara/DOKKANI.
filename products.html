@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b35">
+<title>إدارة المنتجات | DOKKANI</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,Arial;background:#f5f6fa;color:#17233d}
+header{background:#101b35;color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#d8b66a}
+header a{color:#d8b66a;text-decoration:none;font-size:13px}
+.container{max-width:850px;margin:35px auto;padding:0 16px}
+h1{font-size:25px;margin-bottom:8px}
+.subtitle{color:#7c8495;font-size:13px;margin-bottom:25px}
+.panel{background:white;border:1px solid #e8eaf0;border-radius:14px;padding:22px;margin-bottom:22px}
+.panel h2{font-size:18px;margin-bottom:20px}
+label{display:block;font-size:13px;font-weight:bold;margin:14px 0 8px}
+input,textarea{width:100%;padding:13px;border:1px solid #dfe3eb;border-radius:8px;font-family:inherit;font-size:14px;outline:none}
+input:focus,textarea:focus{border-color:#b4934d}
+textarea{min-height:85px;resize:vertical}
+button{border:0;border-radius:8px;padding:13px 18px;font-family:inherit;font-weight:bold;cursor:pointer}
+.primary{background:#101b35;color:white;width:100%;margin-top:18px}
+.primary:hover{background:#20395f}
+.message{font-size:13px;margin-top:14px;line-height:1.8}
+.product{border:1px solid #e8eaf0;border-radius:10px;padding:14px;margin-top:12px;display:flex;gap:14px;align-items:center;background:#fff}
+.product img{width:85px;height:85px;object-fit:cover;border-radius:8px;background:#eee}
+.product-info{flex:1}
+.product-info h3{font-size:15px;margin-bottom:7px}
+.product-info p{font-size:12px;color:#7c8495;line-height:1.7}
+.price{color:#a17b30;font-weight:bold;margin-top:7px;font-size:14px}
+.status{font-size:11px;color:#8b6c32;margin-top:5px}
+footer{text-align:center;color:#8b91a0;font-size:12px;padding:25px}
+footer span{color:#a17b30}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="logo">DOKKANI<span>.</span></div>
+    <small style="color:#cbd2df;font-size:10px">SELLER DASHBOARD</small>
+  </div>
+  <a href="dashboard.html">لوحة التحكم</a>
+</header>
+
+<main class="container">
+  <h1>إدارة المنتجات</h1>
+  <p class="subtitle">أضف منتجاتك واعرضها في متجرك الإلكتروني.</p>
+
+  <section class="panel">
+    <h2>إضافة منتج جديد</h2>
+
+    <form id="productForm">
+      <label for="name">اسم المنتج</label>
+      <input id="name" required maxlength="80"
+        placeholder="مثلاً: ساعة يد">
+
+      <label for="price">السعر بالدرهم</label>
+      <input id="price" type="number" min="0.01"
+        step="0.01" required placeholder="مثلاً: 120">
+
+      <label for="description">وصف المنتج</label>
+      <textarea id="description" maxlength="500"
+        placeholder="اكتب وصفاً مختصراً للمنتج"></textarea>
+
+      <label for="imageUrl">رابط صورة المنتج</label>
+      <input id="imageUrl" type="url"
+        placeholder="https://example.com/image.jpg">
+
+      <button class="primary" id="submitBtn" type="submit">
+        إضافة المنتج
+      </button>
+
+      <p class="message" id="message" role="status"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>منتجات متجري</h2>
+    <div id="productsList">جارٍ تحميل المنتجات...</div>
+  </section>
+</main>
+
+<footer>
+  DOKKANI © 2026 — A project by <span>SZ11</span>
+</footer>
+
+<script type="module">
+import { auth, db } from "./firebase.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const form = document.getElementById("productForm");
+const message = document.getElementById("message");
+const productsList = document.getElementById("productsList");
+const submitBtn = document.getElementById("submitBtn");
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+
+  try {
+    const storeQuery = query(
+      collection(db, "stores"),
+      where("ownerId", "==", user.uid)
+    );
+
+    const storeResult = await getDocs(storeQuery);
+
+    if (storeResult.empty) {
+      message.textContent = "أنشئ متجرك أولاً من لوحة التحكم.";
+      form.style.display = "none";
+      productsList.textContent = "لا يوجد متجر مرتبط بحسابك.";
+      return;
+    }
+
+    await loadProducts();
+  } catch (error) {
+    console.error(error);
+    message.textContent = "تعذر التحقق من متجرك. حاول مجدداً.";
+    productsList.textContent = "تعذر تحميل المنتجات.";
+  }
+});
+
+async function loadProducts() {
+  productsList.textContent = "جارٍ تحميل المنتجات...";
+
+  const productsQuery = query(
+    collection(db, "products"),
+    where("ownerId", "==", currentUser.uid)
+  );
+
+  const result = await getDocs(productsQuery);
+
+  productsList.innerHTML = "";
+
+  if (result.empty) {
+    productsList.textContent = "لم تضف أي منتج حتى الآن.";
+    return;
+  }
+
+  result.forEach((doc) => {
+    const product = doc.data();
+
+    const card = document.createElement("div");
+    card.className = "product";
+
+    const img = document.createElement("img");
+    img.src = product.imageUrl || "https://placehold.co/200x200?text=DOKKANI";
+    img.alt = product.name || "صورة المنتج";
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const name = document.createElement("h3");
+    name.textContent = product.name || "منتج";
+
+    const description = document.createElement("p");
+    description.textContent = product.description || "لا يوجد وصف";
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = product.price + " DH";
+
+    const status = document.createElement("div");
+    status.className = "status";
+    status.textContent = "الحالة: " +
+      (product.status === "active" ? "منشور" : "غير منشور");
+
+    info.append(name, description, price, status);
+    card.append(img, info);
+    productsList.appendChild(card);
+  });
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  if (!currentUser) return;
+
+  const name = document.getElementById("name").value.trim();
+  const price = Number(document.getElementById("price").value);
+  const description = document.getElementById("description").value.trim();
+  const imageUrl = document.getElementById("imageUrl").value.trim();
+
+  if (!name || !Number.isFinite(price) || price <= 0) {
+    message.textContent = "تحقق من اسم المنتج والسعر.";
+    return;
+  }
+
+  if (imageUrl && !/^https?:\/\//i.test(imageUrl)) {
+    message.textContent = "رابط الصورة يجب أن يبدأ بـ https:// أو http://";
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "جارٍ الحفظ...";
+  message.textContent = "";
+
+  try {
+    await addDoc(collection(db, "products"), {
+      ownerId: currentUser.uid,
+      name,
+      price,
+      description,
+      imageUrl,
+      status: "active",
+      createdAt: serverTimestamp()
+    });
+
+    form.reset();
+    message.textContent = "تمت إضافة المنتج بنجاح!";
+    await loadProducts();
+
+  } catch (error) {
+    console.error(error);
+    message.textContent = "تعذر حفظ المنتج. حاول مجدداً.";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "إضافة المنتج";
+  }
+});
+</script>
+
+</body>
+</html>
