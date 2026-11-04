@@ -3,165 +3,365 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101b35">
-<title>SZ11 WALLET | DOKKANI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SZ11 | مركز الإدارة</title>
 
 <style>
+:root{
+  --navy:#071426;
+  --navy2:#10243d;
+  --gold:#d6ad55;
+  --gold2:#f0d28b;
+  --bg:#f3f5f9;
+  --white:#fff;
+  --muted:#8490a3;
+  --border:#e8ebf1;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#17233d}
-header{background:#101b35;color:white;padding:19px 6%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:25px;font-weight:bold}
-.logo span{color:#d8b66a}
-.brand{font-size:11px;color:#cbd2df}
-header a{color:white;text-decoration:none;font-size:13px}
-.container{max-width:1100px;margin:30px auto;padding:0 17px}
-.welcome{margin-bottom:25px}
-.welcome h1{font-size:25px;margin-bottom:7px}
-.welcome p{font-size:13px;color:#81899a}
-.warning{background:#fff8e8;border:1px solid #eddbb1;color:#896a2d;padding:13px;border-radius:9px;margin:20px 0;font-size:13px;line-height:1.8}
-.section{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:21px;margin-bottom:20px}
-.section h2{font-size:18px;margin-bottom:17px}
-.wallet{background:linear-gradient(135deg,#101b35,#243b60);color:white;border-radius:17px;padding:25px;margin-bottom:20px}
-.wallet-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.wallet-title{color:#d8b66a;font-size:20px;font-weight:bold}
-.wallet small{color:#cbd2df}
-.balance{font-size:35px;color:#d8b66a;font-weight:bold;margin:20px 0 7px}
-.wallet-note{font-size:12px;color:#cbd2df;line-height:1.7}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:22px}
-.stat{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:20px}
-.stat p{color:#81899a;font-size:13px;margin-bottom:10px}
-.stat strong{font-size:24px;color:#17233d}
-.gold{color:#a17b30!important}
-.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.action{border:1px solid #e8eaf0;border-radius:10px;padding:17px}
-.action h3{font-size:15px;margin-bottom:8px}
-.action p{font-size:12px;color:#81899a;line-height:1.8}
-button{margin-top:12px;padding:10px 14px;background:#101b35;color:white;border:0;border-radius:7px;font-family:inherit;cursor:pointer}
-button:disabled{opacity:.5;cursor:not-allowed}
-.table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:500px}
-th,td{padding:13px;text-align:right;border-bottom:1px solid #edf0f4;font-size:13px}
-th{color:#81899a;background:#fafbfc}
-.empty{text-align:center;color:#81899a;padding:24px;font-size:13px}
-.status{display:inline-block;padding:5px 9px;border-radius:20px;background:#fff5df;color:#97752f;font-size:11px}
-#notice{margin-top:14px;color:#8b6926;font-size:13px;line-height:1.8}
-footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
-@media(max-width:500px){.balance{font-size:29px}.wallet{padding:20px}}
+body{
+  font-family:Arial,Tahoma,sans-serif;
+  background:var(--bg);
+  color:#172338;
+}
+header{
+  background:var(--navy);
+  color:white;
+  padding:20px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  border-bottom:3px solid var(--gold);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo{
+  width:45px;height:45px;
+  border:1px solid var(--gold);
+  border-radius:12px;
+  display:grid;place-items:center;
+  color:var(--gold);
+  font-weight:bold;font-size:19px;
+}
+.brand h1{font-size:20px}
+.brand p{font-size:11px;color:#b8c2d1;margin-top:5px}
+.status{
+  color:var(--gold2);
+  font-size:12px;
+  border:1px solid #8c713c;
+  padding:8px 12px;
+  border-radius:20px;
+}
+.layout{
+  display:grid;
+  grid-template-columns:230px 1fr;
+  min-height:calc(100vh - 88px);
+}
+aside{
+  background:var(--navy);
+  padding:22px 14px;
+  color:white;
+}
+.menu-title{
+  color:#8795a9;
+  font-size:11px;
+  margin:8px 12px 15px;
+}
+nav a{
+  display:block;
+  text-decoration:none;
+  color:#cbd4e0;
+  padding:13px 12px;
+  margin-bottom:6px;
+  border-radius:9px;
+  font-size:14px;
+}
+nav a:hover,nav a.active{
+  background:#172d49;
+  color:var(--gold2);
+}
+main{padding:25px;min-width:0}
+.heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:22px;
+}
+.heading h2{font-size:22px}
+.heading p{font-size:12px;color:var(--muted);margin-top:7px}
+.demo{
+  background:#fff7e5;
+  border:1px solid #ecd9a9;
+  color:#76591e;
+  padding:14px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.8;
+  margin-bottom:22px;
+}
+.section-title{
+  font-size:16px;
+  margin:27px 0 14px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:18px;
+  min-width:0;
+}
+.card .label{font-size:12px;color:var(--muted)}
+.card .number{
+  font-size:25px;
+  font-weight:bold;
+  margin-top:13px;
+  color:var(--navy);
+}
+.card .note{
+  font-size:11px;
+  color:#929bad;
+  margin-top:8px;
+}
+.wallet{
+  background:linear-gradient(120deg,#071426,#193452);
+  color:white;
+  border:1px solid #a98642;
+  border-radius:17px;
+  padding:24px;
+  margin-top:14px;
+}
+.wallet-top{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.wallet h3{color:var(--gold2);font-size:17px}
+.wallet small{color:#b9c4d2}
+.balance{
+  font-size:35px;
+  font-weight:bold;
+  color:var(--gold2);
+  margin:24px 0 8px;
+}
+.wallet-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+.wallet-item{
+  background:#ffffff12;
+  padding:14px;
+  border-radius:10px;
+}
+.wallet-item span{display:block;color:#b9c4d2;font-size:11px}
+.wallet-item strong{display:block;margin-top:9px;color:white}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:500px;
+}
+.table-wrap{
+  overflow-x:auto;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+}
+th,td{
+  text-align:right;
+  padding:15px;
+  border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+th{background:#f8f9fc;color:#637087}
+.empty{
+  text-align:center;
+  padding:28px;
+  color:var(--muted);
+}
+.tag{
+  background:#fff4dc;
+  color:#8c6926;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:10px;
+}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:17px;
+}
+button{
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  font-weight:bold;
+  cursor:pointer;
+  background:var(--gold);
+  color:var(--navy);
+}
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+footer{
+  text-align:center;
+  color:#8a95a6;
+  font-size:11px;
+  padding:25px;
+}
+@media(max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .layout{grid-template-columns:1fr}
+  aside{padding:10px}
+  nav{display:flex;overflow-x:auto;gap:5px}
+  nav a{white-space:nowrap;margin:0}
+  .menu-title{display:none}
+}
+@media(max-width:500px){
+  main{padding:15px}
+  .cards{grid-template-columns:1fr 1fr;gap:9px}
+  .card{padding:13px}
+  .card .number{font-size:20px}
+  .wallet-grid{grid-template-columns:1fr}
+  header{padding:15px}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div>
-  <div class="logo">DOKKANI<span>.</span></div>
-  <div class="brand">SZ11 CONTROL CENTER</div>
-</div>
-<a href="index.html">عرض الموقع</a>
+  <div class="brand">
+    <div class="logo">SZ11</div>
+    <div>
+      <h1>DOKKANI</h1>
+      <p>Central Administration • SZ11</p>
+    </div>
+  </div>
+  <div class="status">● وضع تجريبي</div>
 </header>
 
-<main class="container">
+<div class="layout">
 
-<section class="welcome">
-  <h1>مركز الإدارة المركزية 👑</h1>
-  <p>إدارة DOKKANI ومحفظة SZ11 المالية.</p>
-</section>
+<aside>
+  <div class="menu-title">القائمة الرئيسية</div>
+  <nav>
+    <a href="#overview" class="active">⌂ نظرة عامة</a>
+    <a href="#wallet">◈ محفظة SZ11</a>
+    <a href="#stores">▣ المتاجر</a>
+    <a href="#sellers">♙ البائعون</a>
+    <a href="#payments">⇄ المدفوعات</a>
+    <a href="#withdrawals">↗ السحوبات</a>
+  </nav>
+</aside>
 
-<div class="warning">
-  ⚠️ المحفظة حالياً واجهة محاسبية تجريبية. لا تمثل رصيداً مالياً حقيقياً، ولا تستقبل أو تسحب الأموال بعد.
-</div>
+<main>
 
-<!-- SZ11 WALLET -->
-
-<section class="wallet">
-  <div class="wallet-top">
+<section id="overview">
+  <div class="heading">
     <div>
-      <div class="wallet-title">SZ11 WALLET</div>
-      <small>المحفظة المركزية للمنصة</small>
+      <h2>مركز الإدارة المركزية 👑</h2>
+      <p>إدارة منصة DOKKANI ومتابعة خدمات SZ11</p>
     </div>
-    <span>💳</span>
   </div>
 
-  <small>الرصيد المتاح</small>
-  <div class="balance">0.00 DH</div>
-  <div class="wallet-note">
-    الرصيد المحاسبي سيُحدّث بعد ربط نظام الدفع والتحقق من العمليات.
+  <div class="demo">
+    ⚠️ <strong>تنبيه مهم:</strong>
+    هذه نسخة تجريبية للواجهة فقط. البيانات المعروضة ليست بيانات مالية حقيقية.
+    لا تستقبل المحفظة الأموال ولا تنفذ عمليات السحب أو تفعيل المتاجر.
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="label">إجمالي المتاجر</div>
+      <div class="number">0</div>
+      <div class="note">بيانات تجريبية</div>
+    </div>
+    <div class="card">
+      <div class="label">إجمالي البائعين</div>
+      <div class="number">0</div>
+      <div class="note">بيانات تجريبية</div>
+    </div>
+    <div class="card">
+      <div class="label">المداخيل المؤكدة</div>
+      <div class="number">0 DH</div>
+      <div class="note">لا توجد عمليات مالية مربوطة</div>
+    </div>
+    <div class="card">
+      <div class="label">طلبات السحب</div>
+      <div class="number">0</div>
+      <div class="note">السحب غير مفعل</div>
+    </div>
   </div>
 </section>
 
-<section class="stats">
+<section id="wallet">
+  <h3 class="section-title">محفظة SZ11 المالية</h3>
 
-  <div class="stat">
-    <p>إجمالي المداخيل المؤكدة</p>
-    <strong class="gold">0.00 DH</strong>
+  <div class="wallet">
+    <div class="wallet-top">
+      <div>
+        <h3>SZ11 WALLET</h3>
+        <small>المحفظة المركزية للمنصة</small>
+      </div>
+      <div>💳</div>
+    </div>
+
+    <div class="label">الرصيد المتاح (تجريبي)</div>
+    <div class="balance">0.00 DH</div>
+    <small>الرصيد المحاسبي غير مرتبط بأموال حقيقية</small>
+
+    <div class="wallet-grid">
+      <div class="wallet-item">
+        <span>إجمالي المداخيل</span>
+        <strong>0.00 DH</strong>
+      </div>
+      <div class="wallet-item">
+        <span>إجمالي المسحوبات</span>
+        <strong>0.00 DH</strong>
+      </div>
+      <div class="wallet-item">
+        <span>الأموال قيد المعالجة</span>
+        <strong>0.00 DH</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button disabled>طلب سحب الأموال</button>
+      <button disabled>تأكيد عملية دفع</button>
+    </div>
   </div>
-
-  <div class="stat">
-    <p>الرصيد المتاح</p>
-    <strong>0.00 DH</strong>
-  </div>
-
-  <div class="stat">
-    <p>إجمالي المسحوبات</p>
-    <strong>0.00 DH</strong>
-  </div>
-
-  <div class="stat">
-    <p>طلبات السحب</p>
-    <strong>0</strong>
-  </div>
-
 </section>
 
-<section class="section">
-  <h2>إدارة المحفظة</h2>
-
-  <div class="actions">
-
-    <div class="action">
-      <h3>💰 طلب سحب الأموال</h3>
-      <p>تقديم طلب لتحويل الأرباح إلى حساب الاستقبال بعد ربط مزود الدفع.</p>
-      <button disabled>السحب غير متاح حالياً</button>
-    </div>
-
-    <div class="action">
-      <h3>📊 سجل المداخيل</h3>
-      <p>متابعة المبالغ الناتجة عن فتح المتاجر.</p>
-      <button onclick="showNotice('سيظهر سجل المداخيل بعد ربط المدفوعات الحقيقية.')">
-        عرض السجل
-      </button>
-    </div>
-
-    <div class="action">
-      <h3>🏦 حساب الاستقبال</h3>
-      <p>إعداد وسيلة استقبال الأموال والتحويلات.</p>
-      <button onclick="showNotice('سيتم إعداد حساب الاستقبال بعد اختيار مزود دفع مناسب.')">
-        إعداد الحساب
-      </button>
-    </div>
-
-  </div>
-
-  <div id="notice" aria-live="polite"></div>
-</section>
-
-<section class="section">
-  <h2>آخر عمليات الدفع</h2>
+<section id="stores">
+  <h3 class="section-title">إدارة المتاجر</h3>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th>العملية</th>
-          <th>المبلغ</th>
-          <th>التاريخ</th>
+          <th>اسم المتجر</th>
+          <th>الرابط التعريفي</th>
           <th>الحالة</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td colspan="4" class="empty">
-            لا توجد عمليات دفع مسجلة.
+          <td colspan="3" class="empty">
+            لا توجد بيانات معروضة في هذه النسخة التجريبية.
           </td>
         </tr>
       </tbody>
@@ -169,8 +369,53 @@ footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
   </div>
 </section>
 
-<section class="section">
-  <h2>سجل طلبات السحب</h2>
+<section id="sellers">
+  <h3 class="section-title">إدارة البائعين</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>البائع</th>
+          <th>البريد الإلكتروني</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="3" class="empty">
+            بيانات البائعين غير مربوطة حالياً.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="payments">
+  <h3 class="section-title">سجل المدفوعات</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم العملية</th>
+          <th>المبلغ</th>
+          <th>الطريقة</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="4" class="empty">
+            لا توجد مدفوعات مسجلة.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="withdrawals">
+  <h3 class="section-title">طلبات السحب</h3>
   <div class="table-wrap">
     <table>
       <thead>
@@ -192,49 +437,16 @@ footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
   </div>
 </section>
 
-<section class="section">
-  <h2>إدارة DOKKANI</h2>
-  <div class="actions">
-
-    <div class="action">
-      <h3>👥 البائعون</h3>
-      <p>متابعة حسابات البائعين.</p>
-      <button onclick="showNotice('إدارة البائعين ستُربط بقاعدة البيانات.')">
-        إدارة البائعين
-      </button>
-    </div>
-
-    <div class="action">
-      <h3>🏪 المتاجر</h3>
-      <p>مراقبة المتاجر وحالة التفعيل.</p>
-      <button onclick="showNotice('إدارة المتاجر ستُفعّل في المرحلة القادمة.')">
-        إدارة المتاجر
-      </button>
-    </div>
-
-    <div class="action">
-      <h3>📈 الإحصائيات</h3>
-      <p>متابعة أداء المنصة.</p>
-      <button onclick="showNotice('الإحصائيات ستظهر بعد ربط البيانات.')">
-        عرض الإحصائيات
-      </button>
-    </div>
-
-  </div>
-</section>
-
-</main>
-
 <footer>
-  DOKKANI © 2026 — SZ11 ADMINISTRATION
+  DOKKANI © 2026 — A project by SZ11
+  <br><br>
+  Central Administration • Demo Version
 </footer>
 
-<script>
-function showNotice(message) {
-  document.getElementById("notice").textContent = message;
-}
-</script>
+</main>
+</div>
 
 </body>
 </html>
+
 
