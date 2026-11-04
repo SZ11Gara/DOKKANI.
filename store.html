@@ -27,10 +27,11 @@ header a{color:white;text-decoration:none;font-size:13px}
 .product h3{font-size:16px;margin-bottom:8px}
 .product p{font-size:13px;color:#858d9d;line-height:1.7}
 .price{display:block;color:#a17b30;font-size:19px;font-weight:bold;margin:13px 0}
-.product button{width:100%;padding:11px;background:#101b35;color:white;border:0;border-radius:8px;font-weight:bold}
+.product button{width:100%;padding:11px;background:#101b35;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer}
 .cart{background:white;border:1px solid #e8eaf0;border-radius:13px;margin-top:25px;padding:20px}
 .cart h2{font-size:19px;margin-bottom:12px}
-.cart p{font-size:14px;color:#81899a}
+.cart p{font-size:14px;color:#81899a;line-height:1.7}
+.notice{background:white;border-radius:13px;padding:25px;text-align:center;line-height:1.8;color:#687386}
 footer{background:#101b35;color:#cbd2df;text-align:center;padding:22px;font-size:12px;margin-top:50px}
 footer span{color:#d8b66a}
 @media(max-width:500px){.hero h1{font-size:26px}.heading h2{font-size:19px}}
@@ -47,8 +48,8 @@ footer span{color:#d8b66a}
 </header>
 
 <section class="hero">
-  <h1 id="storeName">متجر جديد</h1>
-  <p id="storeDescription">مرحباً بكم في متجرنا، اكتشفوا منتجاتنا.</p>
+  <h1 id="storeName">جارٍ تحميل المتجر...</h1>
+  <p id="storeDescription">مرحباً بكم في متجرنا.</p>
 </section>
 
 <main class="container">
@@ -58,20 +59,12 @@ footer span{color:#d8b66a}
   </div>
 
   <div class="products" id="products">
-    <div class="product">
-      <img src="https://placehold.co/500x350/f0f1f5/17233d?text=Product" alt="صورة المنتج">
-      <div class="product-info">
-        <h3>منتج تجريبي</h3>
-        <p>سيتم عرض المنتجات الحقيقية هنا بعد ربط لوحة البائع.</p>
-        <span class="price">0 DH</span>
-        <button type="button" onclick="alert('الطلب غير مفعّل حالياً')">اطلب الآن</button>
-      </div>
-    </div>
+    <div class="notice">جارٍ تحميل المنتجات...</div>
   </div>
 
   <section class="cart">
     <h2>🛒 سلة التسوق</h2>
-    <p>سلة التسوق ستصبح فعّالة عند ربط نظام المنتجات والطلبات.</p>
+    <p>سيتم تفعيل الطلبات في المرحلة القادمة.</p>
   </section>
 </main>
 
@@ -80,5 +73,122 @@ footer span{color:#d8b66a}
   <p>Developed by SZ11 © 2026</p>
 </footer>
 
+<script type="module">
+import { db } from "./firebase.js";
+import {
+  collection, query, where, getDocs
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const storeName = document.getElementById("storeName");
+const storeDescription = document.getElementById("storeDescription");
+const productsBox = document.getElementById("products");
+const productCount = document.getElementById("productCount");
+
+function showError(title, description) {
+  storeName.textContent = title;
+  storeDescription.textContent = description;
+  productsBox.innerHTML =
+    '<div class="notice">' + description + '</div>';
+}
+
+async function loadStore() {
+  const slug = new URLSearchParams(location.search).get("shop");
+
+  if (!slug) {
+    showError("المتجر غير محدد", "رابط المتجر غير مكتمل.");
+    return;
+  }
+
+  try {
+    const storeQuery = query(
+      collection(db, "stores"),
+      where("slug", "==", slug),
+      where("status", "==", "active")
+    );
+
+    const storeResult = await getDocs(storeQuery);
+
+    if (storeResult.empty) {
+      showError(
+        "المتجر غير متاح حالياً",
+        "هذا المتجر لم يتم تفعيله بعد."
+      );
+      return;
+    }
+
+    const store = storeResult.docs[0].data();
+    const ownerId = store.ownerId;
+
+    storeName.textContent = store.name || "متجر DOKKANI";
+    storeDescription.textContent =
+      store.description || "مرحباً بكم في متجرنا.";
+
+    const productsQuery = query(
+      collection(db, "products"),
+      where("ownerId", "==", ownerId),
+      where("status", "==", "active")
+    );
+
+    const productsResult = await getDocs(productsQuery);
+
+    productsBox.innerHTML = "";
+    productCount.textContent = productsResult.size + " منتجات";
+
+    if (productsResult.empty) {
+      productsBox.innerHTML =
+        '<div class="notice">لا توجد منتجات منشورة حالياً.</div>';
+      return;
+    }
+
+    productsResult.forEach((doc) => {
+      const product = doc.data();
+
+      const card = document.createElement("article");
+      card.className = "product";
+
+      const img = document.createElement("img");
+      img.src = product.imageUrl || "https://placehold.co/500x350/f0f1f5/17233d?text=DOKKANI";
+      img.alt = product.name || "صورة المنتج";
+      img.onerror = () => {
+        img.src = "https://placehold.co/500x350/f0f1f5/17233d?text=DOKKANI";
+      };
+
+      const info = document.createElement("div");
+      info.className = "product-info";
+
+      const name = document.createElement("h3");
+      name.textContent = product.name || "منتج";
+
+      const desc = document.createElement("p");
+      desc.textContent = product.description || "";
+
+      const price = document.createElement("span");
+      price.className = "price";
+      price.textContent = (product.price ?? 0) + " DH";
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = "اطلب الآن";
+      button.disabled = true;
+      button.title = "الطلبات غير مفعّلة حالياً";
+
+      info.append(name, desc, price, button);
+      card.append(img, info);
+      productsBox.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error(error);
+    showError(
+      "تعذر تحميل المتجر",
+      "تعذر الوصول إلى البيانات. قد تحتاج صلاحيات Firestore إلى التحديث."
+    );
+  }
+}
+
+loadStore();
+</script>
+
 </body>
 </html>
+
