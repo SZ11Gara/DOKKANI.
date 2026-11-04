@@ -4,7 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1424">
 <title>لوحة البائع | DOKKANI</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0b1424;color:white;font-family:Arial,sans-serif;padding:20px}
@@ -19,25 +21,41 @@ button:disabled{opacity:.5}
 #message{line-height:1.8;overflow-wrap:anywhere;margin-top:15px}
 .muted{color:#bdc6d5}
 .store{border-top:1px solid #536176;margin-top:20px;padding-top:15px}
-a{color:#d6b568}
+a{color:#d6b568;text-decoration:none}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.action{display:block;text-align:center;padding:15px 10px;border-radius:9px;background:#d6b568;color:#101b35;font-weight:bold}
+.action.secondary{background:transparent;color:#d6b568;border:1px solid #b99750}
+.store-link{display:block;margin-top:12px;overflow-wrap:anywhere}
+@media(max-width:420px){.actions{grid-template-columns:1fr}}
 </style>
 </head>
+
 <body>
 <div class="container">
+
 <header>
-  <h1>DOKKANI</h1>
+  <h1>DOKKANI<span style="color:white">.</span></h1>
   <button id="logout">تسجيل الخروج</button>
 </header>
 
 <div class="card">
   <h2>مرحباً بك في لوحة البائع</h2>
   <p class="muted" id="account">جارٍ التحقق من الحساب...</p>
+
   <div id="storeArea" hidden>
     <h3>متجرك الإلكتروني</h3>
     <div class="store">
       <p id="storeName"></p>
       <p id="storeSlug"></p>
-      <p class="muted">تم حفظ بيانات متجرك في Firestore.</p>
+      <p id="storeStatus" class="muted"></p>
+      <a id="storeLink" class="store-link" target="_blank" rel="noopener">
+        رابط متجرك
+      </a>
+    </div>
+
+    <div class="actions">
+      <a class="action" href="products.html">إدارة المنتجات</a>
+      <a class="action secondary" href="store.html">معاينة المتجر</a>
     </div>
   </div>
 </div>
@@ -47,22 +65,28 @@ a{color:#d6b568}
   <form id="storeForm">
     <label for="name">اسم المتجر</label>
     <input id="name" required minlength="2" maxlength="50"
-           placeholder="مثلاً: متجر الأناقة">
+      placeholder="مثلاً: متجر الأناقة">
 
     <label for="slug">رابط المتجر المختصر بالإنجليزية</label>
     <input id="slug" required minlength="3" maxlength="25"
-           pattern="[a-z0-9-]+"
-           placeholder="مثلاً: ahmed-store">
+      pattern="[a-z0-9-]+"
+      placeholder="مثلاً: ahmed-store">
 
     <button id="createBtn" type="submit">إنشاء المتجر</button>
   </form>
 </div>
 
 <div id="message" role="status"></div>
+
+<footer style="text-align:center;color:#bdc6d5;margin-top:35px;font-size:12px">
+  DOKKANI © 2026 — A project by <span style="color:#d6b568">SZ11</span>
+</footer>
+
 </div>
 
 <script type="module">
 import { auth, db } from "./firebase.js";
+
 import {
   onAuthStateChanged,
   signOut
@@ -107,6 +131,7 @@ onAuthStateChanged(auth, async (user) => {
       message.textContent = "لم تنشئ متجراً بعد. يمكنك إنشاؤه الآن.";
     }
   } catch (error) {
+    console.error(error);
     message.textContent = "تعذر تحميل بيانات المتجر: " + error.message;
   }
 });
@@ -114,10 +139,21 @@ onAuthStateChanged(auth, async (user) => {
 function showStore(data) {
   createArea.hidden = true;
   storeArea.hidden = false;
+
   document.getElementById("storeName").textContent =
     "اسم المتجر: " + data.name;
+
   document.getElementById("storeSlug").textContent =
     "الرابط المختصر: " + data.slug;
+
+  document.getElementById("storeStatus").textContent =
+    "حالة المتجر: " +
+    (data.status === "active" ? "مفعّل" : "قيد المراجعة");
+
+  const link = document.getElementById("storeLink");
+  link.href = "store.html?shop=" + encodeURIComponent(data.slug);
+  link.textContent = "فتح رابط المتجر";
+  
   message.textContent = "تم تحميل بيانات متجرك بنجاح.";
 }
 
@@ -158,6 +194,7 @@ form.addEventListener("submit", async (event) => {
     await setDoc(storeRef, storeData);
 
     const userRef = doc(db, "users", currentUser.uid);
+
     await setDoc(userRef, {
       name: currentUser.displayName || "",
       email: currentUser.email,
@@ -168,6 +205,7 @@ form.addEventListener("submit", async (event) => {
     showStore(storeData);
 
   } catch (error) {
+    console.error(error);
     message.textContent = "تعذر إنشاء المتجر: " + error.message;
   } finally {
     createBtn.disabled = false;
@@ -182,4 +220,5 @@ document.getElementById("logout").addEventListener("click", async () => {
 </script>
 </body>
 </html>
+
 
