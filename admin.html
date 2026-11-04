@@ -3,13 +3,14 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101b35">
-<title>الإدارة المركزية | SZ11</title>
+<title>SZ11 WALLET | DOKKANI</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Tahoma,Arial,sans-serif;background:#f4f6fa;color:#17233d}
-header{background:#101b35;color:white;padding:19px 6%;display:flex;justify-content:space-between;align-items:center;gap:10px}
+header{background:#101b35;color:white;padding:19px 6%;display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:25px;font-weight:bold}
 .logo span{color:#d8b66a}
 .brand{font-size:11px;color:#cbd2df}
@@ -18,27 +19,38 @@ header a{color:white;text-decoration:none;font-size:13px}
 .welcome{margin-bottom:25px}
 .welcome h1{font-size:25px;margin-bottom:7px}
 .welcome p{font-size:13px;color:#81899a}
-.warning{background:#fff8e8;border:1px solid #eddbb1;color:#896a2d;padding:13px;border-radius:9px;margin:20px 0;font-size:13px;line-height:1.7}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:25px}
-.stat{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:20px}
-.stat p{color:#81899a;font-size:13px;margin-bottom:10px}
-.stat strong{font-size:26px}
+.warning{background:#fff8e8;border:1px solid #eddbb1;color:#896a2d;padding:13px;border-radius:9px;margin:20px 0;font-size:13px;line-height:1.8}
 .section{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:21px;margin-bottom:20px}
 .section h2{font-size:18px;margin-bottom:17px}
+.wallet{background:linear-gradient(135deg,#101b35,#243b60);color:white;border-radius:17px;padding:25px;margin-bottom:20px}
+.wallet-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wallet-title{color:#d8b66a;font-size:20px;font-weight:bold}
+.wallet small{color:#cbd2df}
+.balance{font-size:35px;color:#d8b66a;font-weight:bold;margin:20px 0 7px}
+.wallet-note{font-size:12px;color:#cbd2df;line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:22px}
+.stat{background:white;border:1px solid #e8eaf0;border-radius:12px;padding:20px}
+.stat p{color:#81899a;font-size:13px;margin-bottom:10px}
+.stat strong{font-size:24px;color:#17233d}
+.gold{color:#a17b30!important}
+.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.action{border:1px solid #e8eaf0;border-radius:10px;padding:17px}
+.action h3{font-size:15px;margin-bottom:8px}
+.action p{font-size:12px;color:#81899a;line-height:1.8}
+button{margin-top:12px;padding:10px 14px;background:#101b35;color:white;border:0;border-radius:7px;font-family:inherit;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:500px}
 th,td{padding:13px;text-align:right;border-bottom:1px solid #edf0f4;font-size:13px}
 th{color:#81899a;background:#fafbfc}
 .empty{text-align:center;color:#81899a;padding:24px;font-size:13px}
-.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.action{border:1px solid #e8eaf0;border-radius:10px;padding:17px}
-.action h3{font-size:15px;margin-bottom:8px}
-.action p{font-size:12px;color:#81899a;line-height:1.7}
-.action button{margin-top:12px;padding:9px 13px;background:#101b35;color:white;border:0;border-radius:7px}
-#notice{margin-top:14px;color:#8b6926;font-size:13px}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;background:#fff5df;color:#97752f;font-size:11px}
+#notice{margin-top:14px;color:#8b6926;font-size:13px;line-height:1.8}
 footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
+@media(max-width:500px){.balance{font-size:29px}.wallet{padding:20px}}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -53,89 +65,176 @@ footer{text-align:center;color:#81899a;padding:25px;font-size:12px}
 
 <section class="welcome">
   <h1>مركز الإدارة المركزية 👑</h1>
-  <p>إدارة ومراقبة منصة DOKKANI بواسطة SZ11.</p>
+  <p>إدارة DOKKANI ومحفظة SZ11 المالية.</p>
 </section>
 
 <div class="warning">
-  ⚠️ هذه لوحة تصميم أولية. لا توجد بعد قاعدة بيانات أو صلاحيات إدارية حقيقية. لا تستخدمها لإدارة مدفوعات أو حسابات فعلية قبل تأمين النظام.
+  ⚠️ المحفظة حالياً واجهة محاسبية تجريبية. لا تمثل رصيداً مالياً حقيقياً، ولا تستقبل أو تسحب الأموال بعد.
 </div>
 
-<section class="stats">
-  <div class="stat">
-    <p>إجمالي البائعين</p>
-    <strong>0</strong>
+<!-- SZ11 WALLET -->
+
+<section class="wallet">
+  <div class="wallet-top">
+    <div>
+      <div class="wallet-title">SZ11 WALLET</div>
+      <small>المحفظة المركزية للمنصة</small>
+    </div>
+    <span>💳</span>
   </div>
-  <div class="stat">
-    <p>المتاجر المنشأة</p>
-    <strong>0</strong>
-  </div>
-  <div class="stat">
-    <p>المتاجر المفعلة</p>
-    <strong>0</strong>
-  </div>
-  <div class="stat">
-    <p>المداخيل</p>
-    <strong>0 DH</strong>
+
+  <small>الرصيد المتاح</small>
+  <div class="balance">0.00 DH</div>
+  <div class="wallet-note">
+    الرصيد المحاسبي سيُحدّث بعد ربط نظام الدفع والتحقق من العمليات.
   </div>
 </section>
 
-<section class="section">
-  <h2>إدارة المنصة</h2>
-  <div class="actions">
-    <div class="action">
-      <h3>👥 البائعون</h3>
-      <p>متابعة حسابات البائعين المسجلين في المنصة.</p>
-      <button onclick="showNotice('إدارة البائعين ستُربط بقاعدة البيانات.')">إدارة البائعين</button>
-    </div>
-    <div class="action">
-      <h3>🏪 المتاجر</h3>
-      <p>مراقبة المتاجر وحالة تفعيلها.</p>
-      <button onclick="showNotice('إدارة المتاجر ستُفعّل بعد بناء النظام.')">إدارة المتاجر</button>
-    </div>
-    <div class="action">
-      <h3>💳 المدفوعات</h3>
-      <p>متابعة عمليات الدفع والتحويلات.</p>
-      <button onclick="showNotice('سجل المدفوعات غير متصل حالياً.')">عرض المدفوعات</button>
-    </div>
-    <div class="action">
-      <h3>📊 الإحصائيات</h3>
-      <p>عرض أداء المنصة ومؤشرات النمو.</p>
-      <button onclick="showNotice('الإحصائيات ستظهر بعد ربط البيانات الحقيقية.')">الإحصائيات</button>
-    </div>
+<section class="stats">
+
+  <div class="stat">
+    <p>إجمالي المداخيل المؤكدة</p>
+    <strong class="gold">0.00 DH</strong>
   </div>
+
+  <div class="stat">
+    <p>الرصيد المتاح</p>
+    <strong>0.00 DH</strong>
+  </div>
+
+  <div class="stat">
+    <p>إجمالي المسحوبات</p>
+    <strong>0.00 DH</strong>
+  </div>
+
+  <div class="stat">
+    <p>طلبات السحب</p>
+    <strong>0</strong>
+  </div>
+
+</section>
+
+<section class="section">
+  <h2>إدارة المحفظة</h2>
+
+  <div class="actions">
+
+    <div class="action">
+      <h3>💰 طلب سحب الأموال</h3>
+      <p>تقديم طلب لتحويل الأرباح إلى حساب الاستقبال بعد ربط مزود الدفع.</p>
+      <button disabled>السحب غير متاح حالياً</button>
+    </div>
+
+    <div class="action">
+      <h3>📊 سجل المداخيل</h3>
+      <p>متابعة المبالغ الناتجة عن فتح المتاجر.</p>
+      <button onclick="showNotice('سيظهر سجل المداخيل بعد ربط المدفوعات الحقيقية.')">
+        عرض السجل
+      </button>
+    </div>
+
+    <div class="action">
+      <h3>🏦 حساب الاستقبال</h3>
+      <p>إعداد وسيلة استقبال الأموال والتحويلات.</p>
+      <button onclick="showNotice('سيتم إعداد حساب الاستقبال بعد اختيار مزود دفع مناسب.')">
+        إعداد الحساب
+      </button>
+    </div>
+
+  </div>
+
   <div id="notice" aria-live="polite"></div>
 </section>
 
 <section class="section">
-  <h2>آخر المتاجر</h2>
+  <h2>آخر عمليات الدفع</h2>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th>اسم المتجر</th>
-          <th>صاحب المتجر</th>
-          <th>تاريخ الإنشاء</th>
+          <th>العملية</th>
+          <th>المبلغ</th>
+          <th>التاريخ</th>
           <th>الحالة</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td colspan="4" class="empty">لا توجد متاجر مسجلة حتى الآن.</td>
+          <td colspan="4" class="empty">
+            لا توجد عمليات دفع مسجلة.
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
 
+<section class="section">
+  <h2>سجل طلبات السحب</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>رقم الطلب</th>
+          <th>المبلغ</th>
+          <th>التاريخ</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="4" class="empty">
+            لا توجد طلبات سحب.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <h2>إدارة DOKKANI</h2>
+  <div class="actions">
+
+    <div class="action">
+      <h3>👥 البائعون</h3>
+      <p>متابعة حسابات البائعين.</p>
+      <button onclick="showNotice('إدارة البائعين ستُربط بقاعدة البيانات.')">
+        إدارة البائعين
+      </button>
+    </div>
+
+    <div class="action">
+      <h3>🏪 المتاجر</h3>
+      <p>مراقبة المتاجر وحالة التفعيل.</p>
+      <button onclick="showNotice('إدارة المتاجر ستُفعّل في المرحلة القادمة.')">
+        إدارة المتاجر
+      </button>
+    </div>
+
+    <div class="action">
+      <h3>📈 الإحصائيات</h3>
+      <p>متابعة أداء المنصة.</p>
+      <button onclick="showNotice('الإحصائيات ستظهر بعد ربط البيانات.')">
+        عرض الإحصائيات
+      </button>
+    </div>
+
+  </div>
+</section>
+
 </main>
 
-<footer>DOKKANI © 2026 — SZ11 ADMINISTRATION</footer>
+<footer>
+  DOKKANI © 2026 — SZ11 ADMINISTRATION
+</footer>
 
 <script>
-function showNotice(message){
-  document.getElementById("notice").textContent=message;
+function showNotice(message) {
+  document.getElementById("notice").textContent = message;
 }
 </script>
 
 </body>
 </html>
+
