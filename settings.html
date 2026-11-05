@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>إعدادات المتجر | DOKKANI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071426;color:white;font-family:Arial,sans-serif;padding:20px}
+.container{max-width:600px;margin:35px auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+h1{color:#d6ad55}
+.card{background:#10243d;border:1px solid #b99750;border-radius:16px;padding:22px;margin-top:22px}
+label{display:block;margin:17px 0 8px}
+input,textarea{
+width:100%;padding:14px;border-radius:8px;
+border:1px solid #536176;background:#071426;
+color:white;font-size:16px;font-family:Arial
+}
+textarea{min-height:110px;resize:vertical}
+button{
+padding:13px 18px;border:0;border-radius:8px;
+background:#d6ad55;color:#111827;font-weight:bold;cursor:pointer
+}
+button:disabled{opacity:.5}
+#message{line-height:1.8;margin-top:15px;overflow-wrap:anywhere}
+a{color:#d6ad55;text-decoration:none}
+.muted{color:#bdc6d5;font-size:13px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+<h1>DOKKANI.</h1>
+<a href="dashboard.html">العودة للوحة البائع</a>
+</header>
+
+<div class="card">
+<h2>⚙️ إعدادات المتجر</h2>
+<p class="muted">عدّل معلومات متجرك واحفظ التغييرات.</p>
+
+<form id="settingsForm">
+
+<label for="storeName">اسم المتجر</label>
+<input id="storeName" required minlength="2" maxlength="50"
+placeholder="اسم متجرك">
+
+<label for="whatsapp">رقم واتساب</label>
+<input id="whatsapp" type="tel" required
+pattern="[0-9]{10,15}" placeholder="مثلاً: 2126XXXXXXXX">
+
+<label for="description">وصف المتجر</label>
+<textarea id="description" maxlength="300"
+placeholder="اكتب وصفاً قصيراً لمتجرك"></textarea>
+
+<button id="saveBtn" type="submit">حفظ التغييرات</button>
+</form>
+
+<p id="message" role="status"></p>
+</div>
+
+<footer style="text-align:center;color:#bdc6d5;margin-top:35px;font-size:12px">
+DOKKANI © 2026 — A project by <span style="color:#d6ad55">SZ11</span>
+</footer>
+</div>
+
+<script type="module">
+import {auth,db} from "./firebase.js";
+
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+import {
+doc,getDoc,updateDoc
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const form=document.getElementById("settingsForm");
+const message=document.getElementById("message");
+const saveBtn=document.getElementById("saveBtn");
+
+let currentUser=null;
+let storeRef=null;
+
+onAuthStateChanged(auth,async user=>{
+if(!user){
+window.location.href="login.html";
+return;
+}
+
+if(!user.emailVerified){
+message.textContent="يجب تأكيد بريدك الإلكتروني أولاً.";
+return;
+}
+
+currentUser=user;
+storeRef=doc(db,"stores",user.uid);
+
+try{
+const snap=await getDoc(storeRef);
+
+if(!snap.exists()){
+message.textContent="لم يتم العثور على متجرك.";
+form.hidden=true;
+return;
+}
+
+const data=snap.data();
+
+document.getElementById("storeName").value=data.name||"";
+document.getElementById("whatsapp").value=data.whatsapp||"";
+document.getElementById("description").value=data.description||"";
+
+message.textContent="تم تحميل إعدادات متجرك بنجاح.";
+
+}catch(error){
+message.textContent="تعذر تحميل البيانات: "+error.message;
+}
+});
+
+form.addEventListener("submit",async event=>{
+event.preventDefault();
+
+if(!currentUser||!storeRef)return;
+
+const name=document.getElementById("storeName").value.trim();
+const whatsapp=document.getElementById("whatsapp").value.trim();
+const description=document.getElementById("description").value.trim();
+
+if(!/^[0-9]{10,15}$/.test(whatsapp)){
+message.textContent="رقم واتساب يجب أن يحتوي على 10 إلى 15 رقماً.";
+return;
+}
+
+saveBtn.disabled=true;
+saveBtn.textContent="جارٍ الحفظ...";
+message.textContent="";
+
+try{
+await updateDoc(storeRef,{
+name,
+whatsapp,
+description
+});
+
+message.textContent="تم حفظ إعدادات متجرك بنجاح.";
+}catch(error){
+message.textContent="تعذر الحفظ: "+error.message;
+}finally{
+saveBtn.disabled=false;
+saveBtn.textContent="حفظ التغييرات";
+}
+});
+</script>
+</body>
+</html>
