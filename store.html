@@ -235,7 +235,19 @@ async function loadProducts(ownerId){
 
       const name = document.createElement("h3");
       name.textContent = product.name || "منتج بدون اسم";
+const orderBtn = document.createElement("a");
+orderBtn.className = "order-button";
+orderBtn.textContent = "اطلب الآن";
 
+if (product.whatsapp) {
+  const message = `السلام عليكم، أريد طلب: ${product.name} بسعر ${product.price} درهم`;
+  orderBtn.href = `https://wa.me/${product.whatsapp}?text=${encodeURIComponent(message)}`;
+  orderBtn.target = "_blank";
+  orderBtn.rel = "noopener noreferrer";
+} else {
+  orderBtn.textContent = "رقم البائع غير متوفر";
+  orderBtn.removeAttribute("href");
+}
       const description = document.createElement("p");
       description.className = "product-description";
       description.textContent =
