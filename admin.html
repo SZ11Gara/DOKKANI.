@@ -5,16 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SZ11 | مركز الإدارة</title>
-
 <style>
 :root{
-  --navy:#071426;
-  --navy2:#10243d;
-  --gold:#d6ad55;
-  --gold2:#f0d28b;
-  --bg:#f3f5f9;
-  --white:#fff;
-  --muted:#8490a3;
+  --navy:#071426;--navy2:#10243d;--gold:#d6ad55;
+  --gold2:#f0d28b;--bg:#f3f5f9;--muted:#8490a3;
   --border:#e8ebf1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -45,30 +39,22 @@ nav a{
 }
 nav a:hover,nav a.active{background:#172d49;color:var(--gold2)}
 main{padding:25px;min-width:0}
-.heading{
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:12px;margin-bottom:22px
-}
+.heading{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px}
 .heading h2{font-size:22px}
 .heading p{font-size:12px;color:var(--muted);margin-top:7px}
 .demo{
   background:#fff7e5;border:1px solid #ecd9a9;color:#76591e;
-  padding:14px;border-radius:10px;font-size:13px;
-  line-height:1.8;margin-bottom:22px
+  padding:14px;border-radius:10px;font-size:13px;line-height:1.8;margin-bottom:22px
 }
 .section-title{font-size:16px;margin:27px 0 14px}
 .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.card{
-  background:white;border:1px solid var(--border);
-  border-radius:13px;padding:18px;min-width:0
-}
+.card{background:white;border:1px solid var(--border);border-radius:13px;padding:18px;min-width:0}
 .card .label{font-size:12px;color:var(--muted)}
 .card .number{font-size:25px;font-weight:bold;margin-top:13px;color:var(--navy)}
 .card .note{font-size:11px;color:#929bad;margin-top:8px}
 .wallet{
-  background:linear-gradient(120deg,#071426,#193452);
-  color:white;border:1px solid #a98642;border-radius:17px;
-  padding:24px;margin-top:14px
+  background:linear-gradient(120deg,#071426,#193452);color:white;
+  border:1px solid #a98642;border-radius:17px;padding:24px;margin-top:14px
 }
 .wallet-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}
 .wallet h3{color:var(--gold2);font-size:17px}
@@ -78,32 +64,29 @@ main{padding:25px;min-width:0}
 .wallet-item{background:#ffffff12;padding:14px;border-radius:10px}
 .wallet-item span{display:block;color:#b9c4d2;font-size:11px}
 .wallet-item strong{display:block;margin-top:9px;color:white}
-table{width:100%;border-collapse:collapse;min-width:500px}
+table{width:100%;border-collapse:collapse;min-width:650px}
 .table-wrap{overflow-x:auto;background:white;border:1px solid var(--border);border-radius:12px}
 th,td{text-align:right;padding:15px;border-bottom:1px solid var(--border);font-size:12px}
 th{background:#f8f9fc;color:#637087}
 .empty{text-align:center;padding:28px;color:var(--muted)}
-.tag{background:#fff4dc;color:#8c6926;padding:5px 9px;border-radius:20px;font-size:10px}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
 button{
-  border:0;border-radius:8px;padding:11px 15px;
+  border:0;border-radius:8px;padding:10px 12px;
   font-weight:bold;cursor:pointer;background:var(--gold);color:var(--navy)
 }
 button:disabled{opacity:.55;cursor:not-allowed}
-footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
-.auth-message{
-  margin:30px auto;max-width:600px;background:white;
-  border:1px solid var(--border);border-radius:14px;
-  padding:25px;text-align:center;line-height:2
-}
-.auth-message a{color:#8c6926;font-weight:bold}
-.store-status{display:inline-block;padding:6px 10px;border-radius:20px;font-size:11px}
+.action-btn{font-size:11px}
+.activate{background:#dff5e6;color:#176b39}
+.suspend{background:#ffe8e8;color:#a32323}
+.tag{display:inline-block;padding:6px 10px;border-radius:20px;font-size:11px}
 .pending{background:#fff4dc;color:#8c6926}
 .active{background:#e5f7eb;color:#187443}
-.rejected{background:#ffe9e9;color:#b42318}
+.suspended{background:#ffe9e9;color:#b42318}
 .unknown{background:#edf0f5;color:#526176}
-#storesMessage{padding:15px;color:var(--muted);font-size:13px}
-#refreshStores{margin:12px 0}
+#storesMessage{padding:14px;color:var(--muted);font-size:13px}
+#accessMessage{margin:30px auto;max-width:600px;background:white;border:1px solid var(--border);border-radius:14px;padding:25px;text-align:center;line-height:2}
+#accessMessage a{color:#8c6926;font-weight:bold}
+footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
 @media(max-width:900px){
   .cards{grid-template-columns:repeat(2,1fr)}
   .layout{grid-template-columns:1fr}
@@ -122,26 +105,19 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="brand">
     <div class="logo">SZ11</div>
-    <div>
-      <h1>DOKKANI</h1>
-      <p>Central Administration • SZ11</p>
-    </div>
+    <div><h1>DOKKANI</h1><p>Central Administration • SZ11</p></div>
   </div>
   <div class="status" id="adminStatus">● جاري التحقق...</div>
 </header>
 
-<div id="accessMessage" class="auth-message">
-  جارٍ التحقق من صلاحية الدخول...
-</div>
+<div id="accessMessage">جارٍ التحقق من صلاحية الدخول...</div>
 
 <div class="layout" id="adminLayout" style="display:none">
-
 <aside>
   <div class="menu-title">القائمة الرئيسية</div>
   <nav>
@@ -155,7 +131,6 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
 </aside>
 
 <main>
-
 <section id="overview">
   <div class="heading">
     <div>
@@ -165,32 +140,16 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
   </div>
 
   <div class="demo">
-    ⚠️ <strong>تنبيه مهم:</strong>
-    هذه نسخة تجريبية للواجهة المالية. المحفظة لا تستقبل الأموال ولا تنفذ عمليات السحب أو الدفع.
-    قسم المتاجر وحده متصل حالياً بقاعدة البيانات.
+    ⚠️ <strong>تنبيه:</strong>
+    المحفظة واجهة تجريبية ولا تستقبل الأموال أو تنفذ السحب.
+    إدارة المتاجر متصلة بقاعدة Firebase.
   </div>
 
   <div class="cards">
-    <div class="card">
-      <div class="label">إجمالي المتاجر</div>
-      <div class="number" id="totalStores">—</div>
-      <div class="note">من قاعدة Firestore</div>
-    </div>
-    <div class="card">
-      <div class="label">إجمالي البائعين</div>
-      <div class="number">0</div>
-      <div class="note">غير مربوط حالياً</div>
-    </div>
-    <div class="card">
-      <div class="label">المداخيل المؤكدة</div>
-      <div class="number">0 DH</div>
-      <div class="note">لا توجد عمليات مالية مربوطة</div>
-    </div>
-    <div class="card">
-      <div class="label">طلبات السحب</div>
-      <div class="number">0</div>
-      <div class="note">السحب غير مفعل</div>
-    </div>
+    <div class="card"><div class="label">إجمالي المتاجر</div><div class="number" id="totalStores">—</div><div class="note">من Firestore</div></div>
+    <div class="card"><div class="label">إجمالي البائعين</div><div class="number">0</div><div class="note">غير مربوط حالياً</div></div>
+    <div class="card"><div class="label">المداخيل المؤكدة</div><div class="number">0 DH</div><div class="note">لا توجد عمليات مالية مربوطة</div></div>
+    <div class="card"><div class="label">طلبات السحب</div><div class="number">0</div><div class="note">السحب غير مفعل</div></div>
   </div>
 </section>
 
@@ -198,33 +157,18 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
   <h3 class="section-title">محفظة SZ11 المالية</h3>
   <div class="wallet">
     <div class="wallet-top">
-      <div>
-        <h3>SZ11 WALLET</h3>
-        <small>المحفظة المركزية للمنصة</small>
-      </div>
+      <div><h3>SZ11 WALLET</h3><small>المحفظة المركزية للمنصة</small></div>
       <div>💳</div>
     </div>
-
     <div class="label">الرصيد المتاح (تجريبي)</div>
     <div class="balance">0.00 DH</div>
     <small>الرصيد المحاسبي غير مرتبط بأموال حقيقية</small>
-
     <div class="wallet-grid">
-      <div class="wallet-item">
-        <span>إجمالي المداخيل</span>
-        <strong>0.00 DH</strong>
-      </div>
-      <div class="wallet-item">
-        <span>إجمالي المسحوبات</span>
-        <strong>0.00 DH</strong>
-      </div>
-      <div class="wallet-item">
-        <span>الأموال قيد المعالجة</span>
-        <strong>0.00 DH</strong>
-      </div>
+      <div class="wallet-item"><span>إجمالي المداخيل</span><strong>0.00 DH</strong></div>
+      <div class="wallet-item"><span>إجمالي المسحوبات</span><strong>0.00 DH</strong></div>
+      <div class="wallet-item"><span>الأموال قيد المعالجة</span><strong>0.00 DH</strong></div>
     </div>
-
-    <div class="actions">
+    <div class="actions" style="margin-top:17px">
       <button disabled>طلب سحب الأموال</button>
       <button disabled>تأكيد عملية دفع</button>
     </div>
@@ -234,17 +178,18 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
 <section id="stores">
   <h3 class="section-title">إدارة المتاجر</h3>
   <button id="refreshStores" type="button">تحديث قائمة المتاجر</button>
-  <div class="table-wrap">
+  <div class="table-wrap" style="margin-top:12px">
     <table>
       <thead>
         <tr>
           <th>اسم المتجر</th>
           <th>الرابط التعريفي</th>
           <th>الحالة</th>
+          <th>الإجراءات</th>
         </tr>
       </thead>
       <tbody id="storesTable">
-        <tr><td colspan="3" class="empty">جارٍ تحميل المتاجر...</td></tr>
+        <tr><td colspan="4" class="empty">جارٍ تحميل المتاجر...</td></tr>
       </tbody>
     </table>
     <div id="storesMessage" aria-live="polite"></div>
@@ -253,65 +198,34 @@ footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
 
 <section id="sellers">
   <h3 class="section-title">إدارة البائعين</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>البائع</th><th>البريد الإلكتروني</th><th>الحالة</th></tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="3" class="empty">بيانات البائعين غير مربوطة حالياً.</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="table-wrap"><table><tbody><tr><td class="empty">بيانات البائعين غير مربوطة حالياً.</td></tr></tbody></table></div>
 </section>
 
 <section id="payments">
   <h3 class="section-title">سجل المدفوعات</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>رقم العملية</th><th>المبلغ</th><th>الطريقة</th><th>الحالة</th></tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="4" class="empty">لا توجد مدفوعات مسجلة.</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="table-wrap"><table><tbody><tr><td class="empty">لا توجد مدفوعات مسجلة.</td></tr></tbody></table></div>
 </section>
 
 <section id="withdrawals">
   <h3 class="section-title">طلبات السحب</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>رقم الطلب</th><th>المبلغ</th><th>التاريخ</th><th>الحالة</th></tr>
-      </thead>
-      <tbody>
-        <tr><td colspan="4" class="empty">لا توجد طلبات سحب.</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="table-wrap"><table><tbody><tr><td class="empty">لا توجد طلبات سحب.</td></tr></tbody></table></div>
 </section>
 
 <footer>
   DOKKANI © 2026 — A project by SZ11
-  <br><br>
-  Central Administration • Demo Version
+  <br><br>Central Administration
 </footer>
-
 </main>
 </div>
 
 <script type="module">
 import { auth, db } from "./firebase.js";
 
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { onAuthStateChanged } from
+"https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
 import {
-  collection,
-  getDocs
+  collection, getDocs, doc, updateDoc
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const ADMIN_UID = "xFjiRqR1TZSMHgJypN3uJ4FH3Ll1";
@@ -324,55 +238,88 @@ const storesMessage = document.getElementById("storesMessage");
 const totalStores = document.getElementById("totalStores");
 const refreshStores = document.getElementById("refreshStores");
 
-function showAccessMessage(message, showLogin = false) {
+let currentAdmin = false;
+
+function showMessage(message, login = false) {
   accessMessage.style.display = "block";
   accessMessage.textContent = message;
-
-  if (showLogin) {
+  if (login) {
     const link = document.createElement("a");
     link.href = "./login.html";
     link.textContent = " تسجيل الدخول";
     accessMessage.appendChild(link);
   }
-
   adminLayout.style.display = "none";
 }
 
-function statusLabel(status) {
+function makeCell(row, value) {
+  const cell = document.createElement("td");
+  cell.textContent = value || "—";
+  row.appendChild(cell);
+  return cell;
+}
+
+function makeStatus(status) {
+  const badge = document.createElement("span");
+  badge.className = "tag " +
+    (["pending","active","suspended"].includes(status) ? status : "unknown");
+
   const labels = {
     pending: "قيد المراجعة",
     active: "مفعّل",
-    rejected: "مرفوض",
     suspended: "موقوف"
   };
-  return labels[status] || status || "غير محدد";
+  badge.textContent = labels[status] || status || "غير محدد";
+  return badge;
+}
+
+async function changeStoreStatus(storeId, newStatus, button) {
+  if (!currentAdmin) return;
+
+  const messages = {
+    active: "هل تأكدت من استلام مبلغ فتح المتجر؟ سيتم تفعيل المتجر.",
+    suspended: "هل تريد إيقاف هذا المتجر؟",
+  };
+
+  if (!confirm(messages[newStatus])) return;
+
+  button.disabled = true;
+  button.textContent = "جارٍ التحديث...";
+
+  try {
+    await updateDoc(doc(db, "stores", storeId), {
+      status: newStatus
+    });
+    await loadStores();
+    storesMessage.textContent = "تم تحديث حالة المتجر بنجاح.";
+  } catch (error) {
+    console.error(error);
+    button.disabled = false;
+    storesMessage.textContent =
+      "تعذر تحديث الحالة: " + (error.code || error.message);
+  }
 }
 
 async function loadStores() {
+  if (!currentAdmin) return;
+
   storesTable.replaceChildren();
-  const loadingRow = document.createElement("tr");
-  const loadingCell = document.createElement("td");
-  loadingCell.colSpan = 3;
-  loadingCell.className = "empty";
-  loadingCell.textContent = "جارٍ تحميل المتاجر...";
-  loadingRow.appendChild(loadingCell);
-  storesTable.appendChild(loadingRow);
-  storesMessage.textContent = "";
+  storesMessage.textContent = "جارٍ تحميل المتاجر...";
 
   try {
     const snapshot = await getDocs(collection(db, "stores"));
     totalStores.textContent = snapshot.size;
-
     storesTable.replaceChildren();
 
     if (snapshot.empty) {
       const row = document.createElement("tr");
       const cell = document.createElement("td");
-      cell.colSpan = 3;
+      cell.colSpan = 4;
       cell.className = "empty";
       cell.textContent = "لا توجد متاجر في قاعدة البيانات.";
       row.appendChild(cell);
       storesTable.appendChild(row);
+      storesMessage.textContent = "";
       return;
     }
 
@@ -380,25 +327,48 @@ async function loadStores() {
       const store = storeDoc.data();
       const row = document.createElement("tr");
 
-      const nameCell = document.createElement("td");
-      nameCell.textContent = store.name || "بدون اسم";
-
-      const slugCell = document.createElement("td");
-      slugCell.textContent = store.slug || "—";
+      makeCell(row, store.name || "بدون اسم");
+      makeCell(row, store.slug || "—");
 
       const statusCell = document.createElement("td");
-      const badge = document.createElement("span");
-      badge.className = "store-status " +
-        (["pending", "active", "rejected"].includes(store.status)
-          ? store.status
-          : "unknown");
-      badge.textContent = statusLabel(store.status);
-      statusCell.appendChild(badge);
+      statusCell.appendChild(makeStatus(store.status));
+      row.appendChild(statusCell);
 
-      row.append(nameCell, slugCell, statusCell);
+      const actionsCell = document.createElement("td");
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      if (store.status === "pending" || store.status === "suspended") {
+        const activateButton = document.createElement("button");
+        activateButton.className = "action-btn activate";
+        activateButton.textContent =
+          store.status === "pending" ? "تفعيل المتجر" : "إعادة التفعيل";
+        activateButton.addEventListener("click", () =>
+          changeStoreStatus(storeDoc.id, "active", activateButton)
+        );
+        actions.appendChild(activateButton);
+      }
+
+      if (store.status === "active") {
+        const suspendButton = document.createElement("button");
+        suspendButton.className = "action-btn suspend";
+        suspendButton.textContent = "إيقاف المتجر";
+        suspendButton.addEventListener("click", () =>
+          changeStoreStatus(storeDoc.id, "suspended", suspendButton)
+        );
+        actions.appendChild(suspendButton);
+      }
+
+      if (!actions.childElementCount) {
+        actions.textContent = "لا توجد إجراءات";
+      }
+
+      actionsCell.appendChild(actions);
+      row.appendChild(actionsCell);
       storesTable.appendChild(row);
     });
 
+    storesMessage.textContent = "تم تحميل " + snapshot.size + " متجر.";
   } catch (error) {
     console.error("Stores loading error:", error);
     totalStores.textContent = "—";
@@ -406,7 +376,7 @@ async function loadStores() {
 
     const row = document.createElement("tr");
     const cell = document.createElement("td");
-    cell.colSpan = 3;
+    cell.colSpan = 4;
     cell.className = "empty";
     cell.textContent = "تعذر تحميل المتاجر.";
     row.appendChild(cell);
@@ -419,27 +389,28 @@ async function loadStores() {
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
+    currentAdmin = false;
     adminStatus.textContent = "● غير مسجل الدخول";
-    showAccessMessage("يجب تسجيل الدخول بحساب المدير أولاً.", true);
+    showMessage("يجب تسجيل الدخول بحساب المدير أولاً.", true);
     return;
   }
 
   if (user.uid !== ADMIN_UID) {
+    currentAdmin = false;
     adminStatus.textContent = "● دخول مرفوض";
-    showAccessMessage("هذا الحساب لا يملك صلاحية دخول مركز الإدارة.");
+    showMessage("هذا الحساب لا يملك صلاحية دخول مركز الإدارة.");
     return;
   }
 
-  adminStatus.textContent = "● تم التحقق من الحساب";
+  currentAdmin = true;
+  adminStatus.textContent = "● تم التحقق من حساب المدير";
   accessMessage.style.display = "none";
   adminLayout.style.display = "grid";
-
   await loadStores();
 });
 
 refreshStores.addEventListener("click", loadStores);
 </script>
-
 </body>
 </html>
 
