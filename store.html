@@ -263,7 +263,7 @@ if (product.whatsapp) {
           : String(product.price || "السعر غير محدد");
 
       info.append(name,description,price);
-      card.append(img,info);
+      card.append(img, info, orderBtn);
       productsGrid.appendChild(card);
 
     });
