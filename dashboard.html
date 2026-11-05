@@ -9,24 +9,109 @@
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b1424;color:white;font-family:Arial,sans-serif;padding:20px}
+
+body{
+  margin:0;
+  background:#0b1424;
+  color:white;
+  font-family:Arial,sans-serif;
+  padding:20px;
+}
+
 .container{max-width:650px;margin:35px auto}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
 h1{color:#d6b568}
-.card{background:#142238;border:1px solid #b99750;border-radius:16px;padding:22px;margin-top:22px}
+
+.card{
+  background:#142238;
+  border:1px solid #b99750;
+  border-radius:16px;
+  padding:22px;
+  margin-top:22px;
+}
+
 label{display:block;margin:15px 0 8px}
-input{width:100%;padding:14px;border-radius:8px;border:1px solid #536176;background:#0b1424;color:white;font-size:16px}
-button{padding:13px 18px;border:0;border-radius:8px;background:#d6b568;color:#111827;font-weight:bold;cursor:pointer}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:8px;
+  border:1px solid #536176;
+  background:#0b1424;
+  color:white;
+  font-size:16px;
+}
+
+button{
+  padding:13px 18px;
+  border:0;
+  border-radius:8px;
+  background:#d6b568;
+  color:#111827;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 button:disabled{opacity:.5}
-#message{line-height:1.8;overflow-wrap:anywhere;margin-top:15px}
+
+#message{
+  line-height:1.8;
+  overflow-wrap:anywhere;
+  margin-top:15px;
+}
+
 .muted{color:#bdc6d5}
-.store{border-top:1px solid #536176;margin-top:20px;padding-top:15px}
-a{color:#d6b568;text-decoration:none}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.action{display:block;text-align:center;padding:15px 10px;border-radius:9px;background:#d6b568;color:#101b35;font-weight:bold}
-.action.secondary{background:transparent;color:#d6b568;border:1px solid #b99750}
-.store-link{display:block;margin-top:12px;overflow-wrap:anywhere}
-@media(max-width:420px){.actions{grid-template-columns:1fr}}
+
+.store{
+  border-top:1px solid #536176;
+  margin-top:20px;
+  padding-top:15px;
+}
+
+a{
+  color:#d6b568;
+  text-decoration:none;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:22px;
+}
+
+.action{
+  display:block;
+  text-align:center;
+  padding:15px 10px;
+  border-radius:9px;
+  background:#d6b568;
+  color:#101b35;
+  font-weight:bold;
+}
+
+.action.secondary{
+  background:transparent;
+  color:#d6b568;
+  border:1px solid #b99750;
+}
+
+.store-link{
+  display:block;
+  margin-top:12px;
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:420px){
+  .actions{grid-template-columns:1fr}
+}
 </style>
 </head>
 
@@ -44,26 +129,44 @@ a{color:#d6b568;text-decoration:none}
 
   <div id="storeArea" hidden>
     <h3>متجرك الإلكتروني</h3>
+
     <div class="store">
       <p id="storeName"></p>
       <p id="storeSlug"></p>
       <p id="storeStatus" class="muted"></p>
-      <a id="storeLink" class="store-link" target="_blank" rel="noopener">
+
+      <a id="storeLink" class="store-link"
+         target="_blank" rel="noopener">
         رابط متجرك
       </a>
     </div>
 
     <div class="actions">
-      <a class="action" href="products.html">إدارة المنتجات</a>
-      <a class="action secondary" href="orders.html">📦 إدارة الطلبات</a>
-      <a class="action secondary" href="store.html?slug=sz11">معاينة المتجر</a>
+      <a class="action" href="products.html">
+        🛍️ إدارة المنتجات
+      </a>
+
+      <a class="action secondary" href="orders.html">
+        📦 إدارة الطلبات
+      </a>
+
+      <a class="action secondary" href="settings.html">
+        ⚙️ إعدادات المتجر
+      </a>
+
+      <a class="action secondary" id="previewStore"
+         target="_blank" rel="noopener">
+        👁️ معاينة المتجر
+      </a>
     </div>
   </div>
 </div>
 
 <div class="card" id="createArea" hidden>
   <h2>إنشاء متجرك</h2>
+
   <form id="storeForm">
+
     <label for="name">اسم المتجر</label>
     <input id="name" required minlength="2" maxlength="50"
       placeholder="مثلاً: متجر الأناقة">
@@ -73,14 +176,18 @@ a{color:#d6b568;text-decoration:none}
       pattern="[a-z0-9-]+"
       placeholder="مثلاً: ahmed-store">
 
-    <button id="createBtn" type="submit">إنشاء المتجر</button>
+    <button id="createBtn" type="submit">
+      إنشاء المتجر
+    </button>
+
   </form>
 </div>
 
 <div id="message" role="status"></div>
 
 <footer style="text-align:center;color:#bdc6d5;margin-top:35px;font-size:12px">
-  DOKKANI © 2026 — A project by <span style="color:#d6b568">SZ11</span>
+  DOKKANI © 2026 — A project by
+  <span style="color:#d6b568">SZ11</span>
 </footer>
 
 </div>
@@ -94,7 +201,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 
 import {
-  doc, getDoc, setDoc, serverTimestamp
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const account = document.getElementById("account");
@@ -107,6 +217,7 @@ const createBtn = document.getElementById("createBtn");
 let currentUser = null;
 
 onAuthStateChanged(auth, async (user) => {
+
   if (!user) {
     window.location.href = "login.html";
     return;
@@ -129,15 +240,19 @@ onAuthStateChanged(auth, async (user) => {
       showStore(storeSnap.data());
     } else {
       createArea.hidden = false;
-      message.textContent = "لم تنشئ متجراً بعد. يمكنك إنشاؤه الآن.";
+      message.textContent =
+        "لم تنشئ متجراً بعد. يمكنك إنشاؤه الآن.";
     }
+
   } catch (error) {
     console.error(error);
-    message.textContent = "تعذر تحميل بيانات المتجر: " + error.message;
+    message.textContent =
+      "تعذر تحميل بيانات المتجر: " + error.message;
   }
 });
 
 function showStore(data) {
+
   createArea.hidden = true;
   storeArea.hidden = false;
 
@@ -151,19 +266,30 @@ function showStore(data) {
     "حالة المتجر: " +
     (data.status === "active" ? "مفعّل" : "قيد المراجعة");
 
+  const storeUrl =
+    "store.html?slug=" + encodeURIComponent(data.slug);
+
   const link = document.getElementById("storeLink");
-  link.href = "store.html?slug=" + encodeURIComponent(data.slug);
+  link.href = storeUrl;
   link.textContent = "فتح رابط المتجر";
 
-  message.textContent = "تم تحميل بيانات متجرك بنجاح.";
+  document.getElementById("previewStore").href = storeUrl;
+
+  message.textContent =
+    "تم تحميل بيانات متجرك بنجاح.";
 }
 
 form.addEventListener("submit", async (event) => {
+
   event.preventDefault();
+
   if (!currentUser) return;
 
-  const name = document.getElementById("name").value.trim();
-  const slug = document.getElementById("slug").value.trim().toLowerCase();
+  const name =
+    document.getElementById("name").value.trim();
+
+  const slug =
+    document.getElementById("slug").value.trim().toLowerCase();
 
   if (!/^[a-z0-9-]{3,25}$/.test(slug)) {
     message.textContent =
@@ -176,6 +302,7 @@ form.addEventListener("submit", async (event) => {
   message.textContent = "";
 
   try {
+
     const storeRef = doc(db, "stores", currentUser.uid);
     const existing = await getDoc(storeRef);
 
@@ -206,11 +333,16 @@ form.addEventListener("submit", async (event) => {
     showStore(storeData);
 
   } catch (error) {
+
     console.error(error);
-    message.textContent = "تعذر إنشاء المتجر: " + error.message;
+    message.textContent =
+      "تعذر إنشاء المتجر: " + error.message;
+
   } finally {
+
     createBtn.disabled = false;
     createBtn.textContent = "إنشاء المتجر";
+
   }
 });
 
@@ -219,6 +351,7 @@ document.getElementById("logout").addEventListener("click", async () => {
   window.location.href = "login.html";
 });
 </script>
+
 </body>
 </html>
 
