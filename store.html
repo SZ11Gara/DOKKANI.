@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>DOKKANI | متجر</title>
 
 <style>
@@ -11,136 +11,106 @@
   --navy:#071426;
   --gold:#d6ad55;
   --gold2:#f0d28b;
-  --bg:#f4f6fa;
-  --white:#ffffff;
-  --muted:#718096;
+  --bg:#f3f5f9;
+  --muted:#8490a3;
+  --border:#e8ebf1;
 }
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:Arial,Tahoma,sans-serif;
   background:var(--bg);
   color:#172338;
-  min-height:100vh;
 }
-
 header{
   background:var(--navy);
   border-bottom:3px solid var(--gold);
   padding:18px;
 }
-
 .header-content{
-  max-width:900px;
+  max-width:1000px;
   margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:12px;
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:white;
-}
-
+.brand{display:flex;align-items:center;gap:10px;color:white}
 .logo{
-  width:42px;
-  height:42px;
-  border:1px solid var(--gold);
-  border-radius:11px;
-  display:grid;
-  place-items:center;
-  color:var(--gold);
-  font-weight:bold;
+  width:42px;height:42px;border:1px solid var(--gold);
+  border-radius:11px;display:grid;place-items:center;
+  color:var(--gold);font-weight:bold
 }
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:30px 18px;
+.powered{color:var(--gold2);font-size:12px}
+.container{max-width:1000px;margin:auto;padding:30px 18px}
+.loading,.message{
+  background:white;border-radius:15px;padding:30px 20px;
+  text-align:center;line-height:1.8
 }
-
-.loading,
-.message{
-  background:white;
-  border-radius:15px;
-  padding:35px 20px;
-  text-align:center;
-  box-shadow:0 5px 25px rgba(0,0,0,.05);
-}
-
 .store-card{
-  display:none;
-  background:white;
-  border-radius:18px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 5px 25px rgba(0,0,0,.06);
+  display:none;background:white;border-radius:18px;
+  padding:28px;box-shadow:0 5px 25px #00000008;
+  text-align:center
 }
-
 .store-icon{
-  width:80px;
-  height:80px;
-  margin:auto;
-  border-radius:20px;
-  background:var(--navy);
-  border:2px solid var(--gold);
-  display:grid;
-  place-items:center;
-  color:var(--gold2);
-  font-size:30px;
+  width:80px;height:80px;margin:auto;border-radius:20px;
+  background:var(--navy);border:2px solid var(--gold);
+  display:grid;place-items:center;font-size:34px
 }
-
-.store-card h1{
-  margin-top:18px;
-  font-size:28px;
-  color:var(--navy);
-}
-
-.slug{
-  color:var(--muted);
-  margin-top:8px;
-}
-
+.store-card h1{margin-top:17px;font-size:28px;color:var(--navy)}
+.slug{color:var(--muted);margin-top:8px}
 .badge{
-  display:inline-block;
-  margin-top:15px;
-  padding:7px 13px;
-  border-radius:20px;
-  background:#e5f7eb;
-  color:#187443;
-  font-size:12px;
+  display:inline-block;margin-top:15px;padding:8px 14px;
+  border-radius:20px;background:#e5f7eb;color:#187443;font-size:12px
 }
-
-.products-title{
-  margin-top:30px;
-  font-size:20px;
+.products-section{margin-top:35px;text-align:right}
+.products-heading{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:10px;flex-wrap:wrap
 }
-
-.empty-products{
-  margin-top:15px;
-  padding:25px;
-  background:#f8f9fc;
-  border-radius:12px;
-  color:var(--muted);
+.products-heading h2{font-size:21px}
+.count{font-size:12px;color:var(--muted)}
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:17px;margin-top:18px
 }
-
+.product{
+  background:white;border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;text-align:right;
+  transition:.2s
+}
+.product-image{
+  width:100%;height:190px;object-fit:cover;
+  background:#eef1f6;display:block
+}
+.product-info{padding:15px}
+.product-info h3{font-size:16px;color:var(--navy);margin-bottom:9px}
+.product-description{
+  font-size:12px;color:var(--muted);
+  line-height:1.7;min-height:38px;overflow-wrap:anywhere
+}
+.product-price{
+  color:#987326;font-size:19px;font-weight:bold;
+  margin-top:14px
+}
+.empty-products,.error-products{
+  margin-top:18px;padding:25px;background:#f8f9fc;
+  border-radius:12px;color:var(--muted);text-align:center;
+  line-height:1.8
+}
+.error{color:#b42318}
 footer{
-  text-align:center;
-  padding:30px 15px;
-  color:var(--muted);
-  font-size:12px;
+  text-align:center;padding:30px 15px;
+  color:var(--muted);font-size:12px
 }
-
-.error{
-  color:#b42318;
+@media(max-width:700px){
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .product-image{height:155px}
+  .store-card{padding:20px 14px}
+}
+@media(max-width:380px){
+  .products-grid{grid-template-columns:1fr}
+  .product-image{height:210px}
 }
 </style>
 </head>
@@ -153,10 +123,7 @@ footer{
       <div class="logo">D</div>
       <strong>DOKKANI</strong>
     </div>
-
-    <div style="color:#f0d28b;font-size:12px">
-      powered by SZ11
-    </div>
+    <div class="powered">powered by SZ11</div>
   </div>
 </header>
 
@@ -167,21 +134,23 @@ footer{
   </div>
 
   <div id="storeCard" class="store-card">
-
     <div class="store-icon">🏪</div>
-
     <h1 id="storeName"></h1>
-
     <div class="slug" id="storeSlug"></div>
-
     <div class="badge">✓ متجر مفعّل</div>
 
-    <h2 class="products-title">المنتجات</h2>
+    <section class="products-section">
+      <div class="products-heading">
+        <h2>منتجات المتجر</h2>
+        <span class="count" id="productsCount">0 منتجات</span>
+      </div>
 
-    <div class="empty-products">
-      لا توجد منتجات منشورة حالياً.
-    </div>
+      <div id="productsGrid" class="products-grid"></div>
 
+      <div id="productsMessage" class="empty-products">
+        جارٍ تحميل المنتجات...
+      </div>
+    </section>
   </div>
 
 </div>
@@ -189,7 +158,6 @@ footer{
 <footer>
   DOKKANI © 2026 — A project by SZ11
 </footer>
-
 
 <script type="module">
 
@@ -202,82 +170,159 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
-
 const loading = document.getElementById("loading");
 const storeCard = document.getElementById("storeCard");
-
 const storeName = document.getElementById("storeName");
 const storeSlug = document.getElementById("storeSlug");
+const productsGrid = document.getElementById("productsGrid");
+const productsMessage = document.getElementById("productsMessage");
+const productsCount = document.getElementById("productsCount");
 
+function showError(message){
+  loading.textContent = message;
+  loading.classList.add("error");
+}
+
+async function loadProducts(ownerId){
+
+  productsGrid.replaceChildren();
+  productsMessage.style.display = "block";
+  productsMessage.textContent = "جارٍ تحميل المنتجات...";
+
+  try{
+
+    const productsQuery = query(
+      collection(db,"products"),
+      where("ownerId","==",ownerId),
+      where("status","==","active")
+    );
+
+    const snapshot = await getDocs(productsQuery);
+
+    productsCount.textContent = snapshot.size + " منتجات";
+
+    if(snapshot.empty){
+      productsMessage.textContent =
+        "لا توجد منتجات منشورة حالياً.";
+      return;
+    }
+
+    productsMessage.style.display = "none";
+
+    snapshot.forEach((productDoc)=>{
+
+      const product = productDoc.data();
+
+      const card = document.createElement("article");
+      card.className = "product";
+
+      const img = document.createElement("img");
+      img.className = "product-image";
+      img.alt = product.name || "صورة المنتج";
+      img.loading = "lazy";
+
+      if(product.imageUrl){
+        img.src = product.imageUrl;
+        img.onerror = () => {
+          img.style.display = "none";
+        };
+      }else{
+        img.style.display = "none";
+      }
+
+      const info = document.createElement("div");
+      info.className = "product-info";
+
+      const name = document.createElement("h3");
+      name.textContent = product.name || "منتج بدون اسم";
+
+      const description = document.createElement("p");
+      description.className = "product-description";
+      description.textContent =
+        product.description || "لا يوجد وصف لهذا المنتج.";
+
+      const price = document.createElement("div");
+      price.className = "product-price";
+
+      const numericPrice = Number(product.price);
+      price.textContent =
+        Number.isFinite(numericPrice)
+          ? numericPrice.toLocaleString("fr-MA") + " DH"
+          : String(product.price || "السعر غير محدد");
+
+      info.append(name,description,price);
+      card.append(img,info);
+      productsGrid.appendChild(card);
+
+    });
+
+  }catch(error){
+
+    console.error("Products error:",error);
+
+    productsMessage.textContent =
+      "تعذر تحميل المنتجات. " +
+      (error.code || error.message || "");
+
+    productsMessage.classList.add("error");
+
+  }
+}
 
 async function loadStore(){
 
   const params = new URLSearchParams(window.location.search);
-
   const slug = params.get("slug");
 
-
   if(!slug){
-
-    loading.innerHTML =
-      '<span class="error">لم يتم تحديد رابط المتجر.</span>';
-
+    showError("لم يتم تحديد رابط المتجر.");
     return;
   }
 
-
   try{
 
-    const storesRef = collection(db,"stores");
-
-
-    const q = query(
-      storesRef,
+    const storesQuery = query(
+      collection(db,"stores"),
       where("slug","==",slug),
       where("status","==","active")
     );
 
-
-    const snapshot = await getDocs(q);
-
+    const snapshot = await getDocs(storesQuery);
 
     if(snapshot.empty){
-
-      loading.innerHTML =
-        '<span class="error">هذا المتجر غير موجود أو غير مفعّل.</span>';
-
+      showError("هذا المتجر غير موجود أو غير مفعّل.");
       return;
     }
 
-
     const store = snapshot.docs[0].data();
 
+    storeName.textContent = store.name || "متجر DOKKANI";
+    storeSlug.textContent = "dokkani.ma/" + store.slug;
 
-    document.title = store.name + " | DOKKANI";
-
-
-    storeName.textContent = store.name;
-
-    storeSlug.textContent =
-      "dokkani.ma/" + store.slug;
-
+    document.title = (store.name || "متجر") + " | DOKKANI";
 
     loading.style.display = "none";
-
     storeCard.style.display = "block";
 
+    if(!store.ownerId){
+      productsMessage.textContent =
+        "تعذر تحديد صاحب المتجر.";
+      return;
+    }
+
+    await loadProducts(store.ownerId);
 
   }catch(error){
 
-    console.error(error);
+    console.error("Store error:",error);
 
-    loading.innerHTML =
-      '<span class="error">حدث خطأ أثناء تحميل المتجر.</span>';
+    showError(
+      "حدث خطأ أثناء تحميل المتجر: " +
+      (error.code || error.message || "")
+    );
 
   }
-
 }
-
 
 loadStore();
 
@@ -285,3 +330,4 @@ loadStore();
 
 </body>
 </html>
+
