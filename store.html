@@ -9,6 +9,7 @@
 <style>
 :root{
   --navy:#071426;
+  --navy2:#10243d;
   --gold:#d6ad55;
   --gold2:#f0d28b;
   --bg:#f3f5f9;
@@ -77,7 +78,6 @@ header{
 .product{
   background:white;border:1px solid var(--border);
   border-radius:14px;overflow:hidden;text-align:right;
-  transition:.2s
 }
 .product-image{
   width:100%;height:190px;object-fit:cover;
@@ -93,6 +93,15 @@ header{
   color:#987326;font-size:19px;font-weight:bold;
   margin-top:14px
 }
+.order-button{
+  display:block;text-align:center;
+  margin:0 15px 15px;padding:12px;
+  background:var(--navy);color:var(--gold2);
+  border:1px solid var(--gold);
+  border-radius:9px;text-decoration:none;
+  font-weight:bold;cursor:pointer;width:calc(100% - 30px);
+}
+.order-button:hover{background:var(--navy2)}
 .empty-products,.error-products{
   margin-top:18px;padding:25px;background:#f8f9fc;
   border-radius:12px;color:var(--muted);text-align:center;
@@ -102,6 +111,57 @@ header{
 footer{
   text-align:center;padding:30px 15px;
   color:var(--muted);font-size:12px
+}
+
+/* نافذة الطلب */
+.modal{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:#071426b8;padding:18px;
+  align-items:center;justify-content:center;
+}
+.modal.show{display:flex}
+.modal-content{
+  background:white;width:100%;max-width:430px;
+  padding:25px;border-radius:17px;
+  max-height:90vh;overflow:auto;
+}
+.modal-header{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:20px;
+}
+.modal-header h2{color:var(--navy);font-size:21px}
+.close-btn{
+  border:0;background:#f1f3f6;border-radius:8px;
+  width:34px;height:34px;font-size:21px;cursor:pointer;
+}
+.selected-product{
+  background:#f6f7fa;padding:13px;
+  border-radius:10px;margin-bottom:17px;
+  line-height:1.8;font-size:14px;
+}
+.modal-content label{
+  display:block;margin:13px 0 7px;
+  font-size:13px;font-weight:bold;color:var(--navy);
+}
+.modal-content input{
+  width:100%;padding:12px;
+  border:1px solid var(--border);
+  border-radius:9px;font-size:15px;
+  outline:none;
+}
+.modal-content input:focus{
+  border-color:var(--gold);
+}
+.submit-order{
+  width:100%;margin-top:20px;padding:14px;
+  border:0;border-radius:9px;
+  background:var(--navy);color:var(--gold2);
+  font-size:15px;font-weight:bold;cursor:pointer;
+}
+.submit-order:disabled{opacity:.6;cursor:not-allowed}
+.order-message{
+  margin-top:12px;text-align:center;
+  font-size:13px;line-height:1.7;
 }
 @media(max-width:700px){
   .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
@@ -155,6 +215,42 @@ footer{
 
 </div>
 
+<!-- نافذة تقديم الطلب -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>إتمام الطلب</h2>
+      <button class="close-btn" id="closeModal" type="button">×</button>
+    </div>
+
+    <div class="selected-product" id="selectedProduct"></div>
+
+    <form id="orderForm">
+      <label for="customerName">الاسم الكامل</label>
+      <input id="customerName" required minlength="2" maxlength="80"
+        placeholder="أدخل اسمك">
+
+      <label for="customerPhone">رقم الهاتف</label>
+      <input id="customerPhone" type="tel" required minlength="8"
+        maxlength="20" placeholder="رقم هاتفك">
+
+      <label for="customerCity">المدينة</label>
+      <input id="customerCity" required minlength="2" maxlength="60"
+        placeholder="مثلاً: جرسيف">
+
+      <label for="quantity">الكمية</label>
+      <input id="quantity" type="number" min="1" max="100"
+        step="1" value="1" required>
+
+      <button class="submit-order" id="submitOrder" type="submit">
+        تأكيد الطلب
+      </button>
+
+      <p class="order-message" id="orderMessage" role="status"></p>
+    </form>
+  </div>
+</div>
+
 <footer>
   DOKKANI © 2026 — A project by SZ11
 </footer>
@@ -167,7 +263,9 @@ import {
   collection,
   query,
   where,
-  getDocs
+  getDocs,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const loading = document.getElementById("loading");
@@ -178,10 +276,52 @@ const productsGrid = document.getElementById("productsGrid");
 const productsMessage = document.getElementById("productsMessage");
 const productsCount = document.getElementById("productsCount");
 
+const orderModal = document.getElementById("orderModal");
+const orderForm = document.getElementById("orderForm");
+const selectedProduct = document.getElementById("selectedProduct");
+const orderMessage = document.getElementById("orderMessage");
+const submitOrder = document.getElementById("submitOrder");
+
+let currentStoreId = "";
+let currentOwnerId = "";
+let selectedOrderProduct = null;
+
 function showError(message){
   loading.textContent = message;
   loading.classList.add("error");
 }
+
+function openOrder(product, productId){
+
+  selectedOrderProduct = {
+    ...product,
+    productId
+  };
+
+  selectedProduct.textContent =
+    product.name + " — " +
+    Number(product.price).toLocaleString("fr-MA") + " DH";
+
+  orderMessage.textContent = "";
+  orderForm.reset();
+  document.getElementById("quantity").value = 1;
+
+  orderModal.classList.add("show");
+}
+
+function closeOrder(){
+  orderModal.classList.remove("show");
+  selectedOrderProduct = null;
+}
+
+document.getElementById("closeModal")
+  .addEventListener("click", closeOrder);
+
+orderModal.addEventListener("click", (event)=>{
+  if(event.target === orderModal){
+    closeOrder();
+  }
+});
 
 async function loadProducts(ownerId){
 
@@ -235,19 +375,7 @@ async function loadProducts(ownerId){
 
       const name = document.createElement("h3");
       name.textContent = product.name || "منتج بدون اسم";
-const orderBtn = document.createElement("a");
-orderBtn.className = "order-button";
-orderBtn.textContent = "اطلب الآن";
 
-if (product.whatsapp) {
-  const message = `السلام عليكم، أريد طلب: ${product.name} بسعر ${product.price} درهم`;
-  orderBtn.href = `https://wa.me/${product.whatsapp}?text=${encodeURIComponent(message)}`;
-  orderBtn.target = "_blank";
-  orderBtn.rel = "noopener noreferrer";
-} else {
-  orderBtn.textContent = "رقم البائع غير متوفر";
-  orderBtn.removeAttribute("href");
-}
       const description = document.createElement("p");
       description.className = "product-description";
       description.textContent =
@@ -263,7 +391,17 @@ if (product.whatsapp) {
           : String(product.price || "السعر غير محدد");
 
       info.append(name,description,price);
-      card.append(img, info, orderBtn);
+
+      const orderBtn = document.createElement("button");
+      orderBtn.type = "button";
+      orderBtn.className = "order-button";
+      orderBtn.textContent = "اطلب الآن";
+
+      orderBtn.addEventListener("click", ()=>{
+        openOrder(product, productDoc.id);
+      });
+
+      card.append(img,info,orderBtn);
       productsGrid.appendChild(card);
 
     });
@@ -280,6 +418,112 @@ if (product.whatsapp) {
 
   }
 }
+
+/* حفظ الطلب */
+orderForm.addEventListener("submit", async (event)=>{
+
+  event.preventDefault();
+
+  if(!selectedOrderProduct || !currentStoreId || !currentOwnerId){
+    orderMessage.textContent = "تعذر تحديد المنتج أو المتجر.";
+    return;
+  }
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const customerPhone =
+    document.getElementById("customerPhone").value.trim();
+
+  const customerCity =
+    document.getElementById("customerCity").value.trim();
+
+  const quantity =
+    Number(document.getElementById("quantity").value);
+
+  const product = selectedOrderProduct;
+  const price = Number(product.price);
+
+  if(!customerName || !customerPhone || !customerCity ||
+     customerName.length < 2 || customerPhone.length < 8 ||
+     customerCity.length < 2 || !Number.isInteger(quantity) ||
+     quantity < 1 || quantity > 100 ||
+     !Number.isFinite(price) || price <= 0){
+
+    orderMessage.textContent = "يرجى التأكد من صحة جميع البيانات.";
+    return;
+  }
+
+  submitOrder.disabled = true;
+  submitOrder.textContent = "جارٍ تسجيل الطلب...";
+  orderMessage.textContent = "";
+
+  try{
+
+    await addDoc(collection(db,"orders"),{
+
+      storeId: currentStoreId,
+      ownerId: currentOwnerId,
+      productId: product.productId,
+      productName: String(product.name || "منتج"),
+      price: price,
+      quantity: quantity,
+
+      customerName: customerName,
+      customerPhone: customerPhone,
+      customerCity: customerCity,
+
+      status: "new",
+      createdAt: serverTimestamp()
+
+    });
+
+    const total = price * quantity;
+
+    const whatsappMessage =
+      `السلام عليكم، لقد سجلت طلباً عبر DOKKANI.\n\n` +
+      `المنتج: ${product.name}\n` +
+      `السعر: ${price} درهم\n` +
+      `الكمية: ${quantity}\n` +
+      `المجموع: ${total} درهم\n\n` +
+      `اسم الزبون: ${customerName}\n` +
+      `الهاتف: ${customerPhone}\n` +
+      `المدينة: ${customerCity}`;
+
+    const phone = String(product.whatsapp || "").replace(/\D/g,"");
+
+    if(phone.length >= 10 && phone.length <= 15){
+
+      orderMessage.textContent = "تم تسجيل الطلب! جارٍ فتح واتساب...";
+
+      const whatsappUrl =
+        "https://wa.me/" + phone +
+        "?text=" + encodeURIComponent(whatsappMessage);
+
+      window.location.href = whatsappUrl;
+
+    }else{
+
+      orderMessage.textContent =
+        "تم تسجيل طلبك بنجاح، لكن رقم واتساب البائع غير صالح.";
+
+      submitOrder.textContent = "تم تسجيل الطلب";
+    }
+
+  }catch(error){
+
+    console.error("Order error:",error);
+
+    orderMessage.textContent =
+      "تعذر تسجيل الطلب: " +
+      (error.code || error.message || "خطأ غير معروف");
+
+    submitOrder.disabled = false;
+    submitOrder.textContent = "إعادة المحاولة";
+
+  }
+
+});
 
 async function loadStore(){
 
@@ -306,7 +550,11 @@ async function loadStore(){
       return;
     }
 
-    const store = snapshot.docs[0].data();
+    const storeDoc = snapshot.docs[0];
+    const store = storeDoc.data();
+
+    currentStoreId = storeDoc.id;
+    currentOwnerId = store.ownerId || "";
 
     storeName.textContent = store.name || "متجر DOKKANI";
     storeSlug.textContent = "dokkani.ma/" + store.slug;
@@ -316,13 +564,13 @@ async function loadStore(){
     loading.style.display = "none";
     storeCard.style.display = "block";
 
-    if(!store.ownerId){
+    if(!currentOwnerId){
       productsMessage.textContent =
         "تعذر تحديد صاحب المتجر.";
       return;
     }
 
-    await loadProducts(store.ownerId);
+    await loadProducts(currentOwnerId);
 
   }catch(error){
 
@@ -342,4 +590,5 @@ loadStore();
 
 </body>
 </html>
+
 
