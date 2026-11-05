@@ -55,7 +55,8 @@ a{color:#d6b568;text-decoration:none}
 
     <div class="actions">
       <a class="action" href="products.html">إدارة المنتجات</a>
-      <a class="action secondary" href="store.html">معاينة المتجر</a>
+      <a class="action secondary" href="orders.html">📦 إدارة الطلبات</a>
+      <a class="action secondary" href="store.html?slug=sz11">معاينة المتجر</a>
     </div>
   </div>
 </div>
@@ -151,9 +152,9 @@ function showStore(data) {
     (data.status === "active" ? "مفعّل" : "قيد المراجعة");
 
   const link = document.getElementById("storeLink");
-  link.href = "store.html?shop=" + encodeURIComponent(data.slug);
+  link.href = "store.html?slug=" + encodeURIComponent(data.slug);
   link.textContent = "فتح رابط المتجر";
-  
+
   message.textContent = "تم تحميل بيانات متجرك بنجاح.";
 }
 
@@ -220,5 +221,6 @@ document.getElementById("logout").addEventListener("click", async () => {
 </script>
 </body>
 </html>
+
 
 
