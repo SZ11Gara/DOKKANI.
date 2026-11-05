@@ -209,7 +209,7 @@ form.addEventListener("submit", async (event) => {
   const price = Number(document.getElementById("price").value);
   const description = document.getElementById("description").value.trim();
   const imageUrl = document.getElementById("imageUrl").value.trim();
-
+const whatsapp = document.getElementById("whatsapp").value.trim();
   if (!name || !Number.isFinite(price) || price <= 0) {
     message.textContent = "تحقق من اسم المنتج والسعر.";
     return;
