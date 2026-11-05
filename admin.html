@@ -18,211 +18,92 @@
   --border:#e8ebf1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:var(--bg);
-  color:#172338;
-}
+body{font-family:Arial,Tahoma,sans-serif;background:var(--bg);color:#172338}
 header{
-  background:var(--navy);
-  color:white;
-  padding:20px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
-  border-bottom:3px solid var(--gold);
+  background:var(--navy);color:white;padding:20px 25px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;flex-wrap:wrap;border-bottom:3px solid var(--gold)
 }
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+.brand{display:flex;align-items:center;gap:12px}
 .logo{
-  width:45px;height:45px;
-  border:1px solid var(--gold);
-  border-radius:12px;
-  display:grid;place-items:center;
-  color:var(--gold);
-  font-weight:bold;font-size:19px;
+  width:45px;height:45px;border:1px solid var(--gold);
+  border-radius:12px;display:grid;place-items:center;
+  color:var(--gold);font-weight:bold;font-size:19px
 }
 .brand h1{font-size:20px}
 .brand p{font-size:11px;color:#b8c2d1;margin-top:5px}
 .status{
-  color:var(--gold2);
-  font-size:12px;
-  border:1px solid #8c713c;
-  padding:8px 12px;
-  border-radius:20px;
+  color:var(--gold2);font-size:12px;border:1px solid #8c713c;
+  padding:8px 12px;border-radius:20px
 }
-.layout{
-  display:grid;
-  grid-template-columns:230px 1fr;
-  min-height:calc(100vh - 88px);
-}
-aside{
-  background:var(--navy);
-  padding:22px 14px;
-  color:white;
-}
-.menu-title{
-  color:#8795a9;
-  font-size:11px;
-  margin:8px 12px 15px;
-}
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 88px)}
+aside{background:var(--navy);padding:22px 14px;color:white}
+.menu-title{color:#8795a9;font-size:11px;margin:8px 12px 15px}
 nav a{
-  display:block;
-  text-decoration:none;
-  color:#cbd4e0;
-  padding:13px 12px;
-  margin-bottom:6px;
-  border-radius:9px;
-  font-size:14px;
+  display:block;text-decoration:none;color:#cbd4e0;
+  padding:13px 12px;margin-bottom:6px;border-radius:9px;font-size:14px
 }
-nav a:hover,nav a.active{
-  background:#172d49;
-  color:var(--gold2);
-}
+nav a:hover,nav a.active{background:#172d49;color:var(--gold2)}
 main{padding:25px;min-width:0}
 .heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:22px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;margin-bottom:22px
 }
 .heading h2{font-size:22px}
 .heading p{font-size:12px;color:var(--muted);margin-top:7px}
 .demo{
-  background:#fff7e5;
-  border:1px solid #ecd9a9;
-  color:#76591e;
-  padding:14px;
-  border-radius:10px;
-  font-size:13px;
-  line-height:1.8;
-  margin-bottom:22px;
+  background:#fff7e5;border:1px solid #ecd9a9;color:#76591e;
+  padding:14px;border-radius:10px;font-size:13px;
+  line-height:1.8;margin-bottom:22px
 }
-.section-title{
-  font-size:16px;
-  margin:27px 0 14px;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;
-}
+.section-title{font-size:16px;margin:27px 0 14px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:18px;
-  min-width:0;
+  background:white;border:1px solid var(--border);
+  border-radius:13px;padding:18px;min-width:0
 }
 .card .label{font-size:12px;color:var(--muted)}
-.card .number{
-  font-size:25px;
-  font-weight:bold;
-  margin-top:13px;
-  color:var(--navy);
-}
-.card .note{
-  font-size:11px;
-  color:#929bad;
-  margin-top:8px;
-}
+.card .number{font-size:25px;font-weight:bold;margin-top:13px;color:var(--navy)}
+.card .note{font-size:11px;color:#929bad;margin-top:8px}
 .wallet{
   background:linear-gradient(120deg,#071426,#193452);
-  color:white;
-  border:1px solid #a98642;
-  border-radius:17px;
-  padding:24px;
-  margin-top:14px;
+  color:white;border:1px solid #a98642;border-radius:17px;
+  padding:24px;margin-top:14px
 }
-.wallet-top{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:15px;
-}
+.wallet-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px}
 .wallet h3{color:var(--gold2);font-size:17px}
 .wallet small{color:#b9c4d2}
-.balance{
-  font-size:35px;
-  font-weight:bold;
-  color:var(--gold2);
-  margin:24px 0 8px;
-}
-.wallet-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:25px;
-}
-.wallet-item{
-  background:#ffffff12;
-  padding:14px;
-  border-radius:10px;
-}
+.balance{font-size:35px;font-weight:bold;color:var(--gold2);margin:24px 0 8px}
+.wallet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
+.wallet-item{background:#ffffff12;padding:14px;border-radius:10px}
 .wallet-item span{display:block;color:#b9c4d2;font-size:11px}
 .wallet-item strong{display:block;margin-top:9px;color:white}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:500px;
-}
-.table-wrap{
-  overflow-x:auto;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-}
-th,td{
-  text-align:right;
-  padding:15px;
-  border-bottom:1px solid var(--border);
-  font-size:12px;
-}
+table{width:100%;border-collapse:collapse;min-width:500px}
+.table-wrap{overflow-x:auto;background:white;border:1px solid var(--border);border-radius:12px}
+th,td{text-align:right;padding:15px;border-bottom:1px solid var(--border);font-size:12px}
 th{background:#f8f9fc;color:#637087}
-.empty{
-  text-align:center;
-  padding:28px;
-  color:var(--muted);
-}
-.tag{
-  background:#fff4dc;
-  color:#8c6926;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:10px;
-}
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:17px;
-}
+.empty{text-align:center;padding:28px;color:var(--muted)}
+.tag{background:#fff4dc;color:#8c6926;padding:5px 9px;border-radius:20px;font-size:10px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
 button{
-  border:0;
-  border-radius:8px;
-  padding:11px 15px;
-  font-weight:bold;
-  cursor:pointer;
-  background:var(--gold);
-  color:var(--navy);
+  border:0;border-radius:8px;padding:11px 15px;
+  font-weight:bold;cursor:pointer;background:var(--gold);color:var(--navy)
 }
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
+button:disabled{opacity:.55;cursor:not-allowed}
+footer{text-align:center;color:#8a95a6;font-size:11px;padding:25px}
+.auth-message{
+  margin:30px auto;max-width:600px;background:white;
+  border:1px solid var(--border);border-radius:14px;
+  padding:25px;text-align:center;line-height:2
 }
-footer{
-  text-align:center;
-  color:#8a95a6;
-  font-size:11px;
-  padding:25px;
-}
+.auth-message a{color:#8c6926;font-weight:bold}
+.store-status{display:inline-block;padding:6px 10px;border-radius:20px;font-size:11px}
+.pending{background:#fff4dc;color:#8c6926}
+.active{background:#e5f7eb;color:#187443}
+.rejected{background:#ffe9e9;color:#b42318}
+.unknown{background:#edf0f5;color:#526176}
+#storesMessage{padding:15px;color:var(--muted);font-size:13px}
+#refreshStores{margin:12px 0}
 @media(max-width:900px){
   .cards{grid-template-columns:repeat(2,1fr)}
   .layout{grid-template-columns:1fr}
@@ -252,10 +133,14 @@ footer{
       <p>Central Administration • SZ11</p>
     </div>
   </div>
-  <div class="status">● وضع تجريبي</div>
+  <div class="status" id="adminStatus">● جاري التحقق...</div>
 </header>
 
-<div class="layout">
+<div id="accessMessage" class="auth-message">
+  جارٍ التحقق من صلاحية الدخول...
+</div>
+
+<div class="layout" id="adminLayout" style="display:none">
 
 <aside>
   <div class="menu-title">القائمة الرئيسية</div>
@@ -281,20 +166,20 @@ footer{
 
   <div class="demo">
     ⚠️ <strong>تنبيه مهم:</strong>
-    هذه نسخة تجريبية للواجهة فقط. البيانات المعروضة ليست بيانات مالية حقيقية.
-    لا تستقبل المحفظة الأموال ولا تنفذ عمليات السحب أو تفعيل المتاجر.
+    هذه نسخة تجريبية للواجهة المالية. المحفظة لا تستقبل الأموال ولا تنفذ عمليات السحب أو الدفع.
+    قسم المتاجر وحده متصل حالياً بقاعدة البيانات.
   </div>
 
   <div class="cards">
     <div class="card">
       <div class="label">إجمالي المتاجر</div>
-      <div class="number">0</div>
-      <div class="note">بيانات تجريبية</div>
+      <div class="number" id="totalStores">—</div>
+      <div class="note">من قاعدة Firestore</div>
     </div>
     <div class="card">
       <div class="label">إجمالي البائعين</div>
       <div class="number">0</div>
-      <div class="note">بيانات تجريبية</div>
+      <div class="note">غير مربوط حالياً</div>
     </div>
     <div class="card">
       <div class="label">المداخيل المؤكدة</div>
@@ -311,7 +196,6 @@ footer{
 
 <section id="wallet">
   <h3 class="section-title">محفظة SZ11 المالية</h3>
-
   <div class="wallet">
     <div class="wallet-top">
       <div>
@@ -349,6 +233,7 @@ footer{
 
 <section id="stores">
   <h3 class="section-title">إدارة المتاجر</h3>
+  <button id="refreshStores" type="button">تحديث قائمة المتاجر</button>
   <div class="table-wrap">
     <table>
       <thead>
@@ -358,14 +243,11 @@ footer{
           <th>الحالة</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td colspan="3" class="empty">
-            لا توجد بيانات معروضة في هذه النسخة التجريبية.
-          </td>
-        </tr>
+      <tbody id="storesTable">
+        <tr><td colspan="3" class="empty">جارٍ تحميل المتاجر...</td></tr>
       </tbody>
     </table>
+    <div id="storesMessage" aria-live="polite"></div>
   </div>
 </section>
 
@@ -374,18 +256,10 @@ footer{
   <div class="table-wrap">
     <table>
       <thead>
-        <tr>
-          <th>البائع</th>
-          <th>البريد الإلكتروني</th>
-          <th>الحالة</th>
-        </tr>
+        <tr><th>البائع</th><th>البريد الإلكتروني</th><th>الحالة</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="3" class="empty">
-            بيانات البائعين غير مربوطة حالياً.
-          </td>
-        </tr>
+        <tr><td colspan="3" class="empty">بيانات البائعين غير مربوطة حالياً.</td></tr>
       </tbody>
     </table>
   </div>
@@ -396,19 +270,10 @@ footer{
   <div class="table-wrap">
     <table>
       <thead>
-        <tr>
-          <th>رقم العملية</th>
-          <th>المبلغ</th>
-          <th>الطريقة</th>
-          <th>الحالة</th>
-        </tr>
+        <tr><th>رقم العملية</th><th>المبلغ</th><th>الطريقة</th><th>الحالة</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="4" class="empty">
-            لا توجد مدفوعات مسجلة.
-          </td>
-        </tr>
+        <tr><td colspan="4" class="empty">لا توجد مدفوعات مسجلة.</td></tr>
       </tbody>
     </table>
   </div>
@@ -419,19 +284,10 @@ footer{
   <div class="table-wrap">
     <table>
       <thead>
-        <tr>
-          <th>رقم الطلب</th>
-          <th>المبلغ</th>
-          <th>التاريخ</th>
-          <th>الحالة</th>
-        </tr>
+        <tr><th>رقم الطلب</th><th>المبلغ</th><th>التاريخ</th><th>الحالة</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td colspan="4" class="empty">
-            لا توجد طلبات سحب.
-          </td>
-        </tr>
+        <tr><td colspan="4" class="empty">لا توجد طلبات سحب.</td></tr>
       </tbody>
     </table>
   </div>
@@ -446,7 +302,146 @@ footer{
 </main>
 </div>
 
+<script type="module">
+import { auth, db } from "./firebase.js";
+
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+
+const ADMIN_UID = "xFjiRqR1TZSMHgJypN3uJ4FH3Ll1";
+
+const accessMessage = document.getElementById("accessMessage");
+const adminLayout = document.getElementById("adminLayout");
+const adminStatus = document.getElementById("adminStatus");
+const storesTable = document.getElementById("storesTable");
+const storesMessage = document.getElementById("storesMessage");
+const totalStores = document.getElementById("totalStores");
+const refreshStores = document.getElementById("refreshStores");
+
+function showAccessMessage(message, showLogin = false) {
+  accessMessage.style.display = "block";
+  accessMessage.textContent = message;
+
+  if (showLogin) {
+    const link = document.createElement("a");
+    link.href = "./login.html";
+    link.textContent = " تسجيل الدخول";
+    accessMessage.appendChild(link);
+  }
+
+  adminLayout.style.display = "none";
+}
+
+function statusLabel(status) {
+  const labels = {
+    pending: "قيد المراجعة",
+    active: "مفعّل",
+    rejected: "مرفوض",
+    suspended: "موقوف"
+  };
+  return labels[status] || status || "غير محدد";
+}
+
+async function loadStores() {
+  storesTable.replaceChildren();
+  const loadingRow = document.createElement("tr");
+  const loadingCell = document.createElement("td");
+  loadingCell.colSpan = 3;
+  loadingCell.className = "empty";
+  loadingCell.textContent = "جارٍ تحميل المتاجر...";
+  loadingRow.appendChild(loadingCell);
+  storesTable.appendChild(loadingRow);
+  storesMessage.textContent = "";
+
+  try {
+    const snapshot = await getDocs(collection(db, "stores"));
+    totalStores.textContent = snapshot.size;
+
+    storesTable.replaceChildren();
+
+    if (snapshot.empty) {
+      const row = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = 3;
+      cell.className = "empty";
+      cell.textContent = "لا توجد متاجر في قاعدة البيانات.";
+      row.appendChild(cell);
+      storesTable.appendChild(row);
+      return;
+    }
+
+    snapshot.forEach((storeDoc) => {
+      const store = storeDoc.data();
+      const row = document.createElement("tr");
+
+      const nameCell = document.createElement("td");
+      nameCell.textContent = store.name || "بدون اسم";
+
+      const slugCell = document.createElement("td");
+      slugCell.textContent = store.slug || "—";
+
+      const statusCell = document.createElement("td");
+      const badge = document.createElement("span");
+      badge.className = "store-status " +
+        (["pending", "active", "rejected"].includes(store.status)
+          ? store.status
+          : "unknown");
+      badge.textContent = statusLabel(store.status);
+      statusCell.appendChild(badge);
+
+      row.append(nameCell, slugCell, statusCell);
+      storesTable.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error("Stores loading error:", error);
+    totalStores.textContent = "—";
+    storesTable.replaceChildren();
+
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 3;
+    cell.className = "empty";
+    cell.textContent = "تعذر تحميل المتاجر.";
+    row.appendChild(cell);
+    storesTable.appendChild(row);
+
+    storesMessage.textContent =
+      "السبب: " + (error.code || error.message || "خطأ غير معروف");
+  }
+}
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    adminStatus.textContent = "● غير مسجل الدخول";
+    showAccessMessage("يجب تسجيل الدخول بحساب المدير أولاً.", true);
+    return;
+  }
+
+  if (user.uid !== ADMIN_UID) {
+    adminStatus.textContent = "● دخول مرفوض";
+    showAccessMessage("هذا الحساب لا يملك صلاحية دخول مركز الإدارة.");
+    return;
+  }
+
+  adminStatus.textContent = "● تم التحقق من الحساب";
+  accessMessage.style.display = "none";
+  adminLayout.style.display = "grid";
+
+  await loadStores();
+});
+
+refreshStores.addEventListener("click", loadStores);
+</script>
+
 </body>
 </html>
+
 
 
