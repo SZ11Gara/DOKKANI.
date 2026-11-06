@@ -2,253 +2,271 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101b35">
-  <title>DOKKANI | متجرك يبدأ من هنا</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>DOKKANI | اكتشف عالم التجارة</title>
 
-    body {
-      font-family: Tahoma, Arial, sans-serif;
-      background: #f7f8fc;
-      color: #17233d;
-      line-height: 1.7;
-    }
-
-    header {
-      background: #101b35;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .logo {
-      font-size: 27px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .logo span {
-      color: #d8b66a;
-    }
-
-    .brand {
-      color: #c7cbd5;
-      font-size: 11px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #101b35, #1b3154);
-      color: white;
-      padding: 85px 7%;
-      text-align: center;
-    }
-
-    .tag {
-      display: inline-block;
-      border: 1px solid #b99a58;
-      color: #e6c77f;
-      border-radius: 30px;
-      padding: 5px 17px;
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
-
-    h1 {
-      font-size: clamp(32px, 6vw, 54px);
-      line-height: 1.4;
-      margin-bottom: 18px;
-    }
-
-    h1 span {
-      color: #e3c477;
-    }
-
-    .hero p {
-      color: #d4dbea;
-      max-width: 620px;
-      margin: 0 auto 30px;
-      font-size: 16px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #d8b66a;
-      color: #101b35;
-      text-decoration: none;
-      padding: 13px 28px;
-      border-radius: 9px;
-      font-weight: bold;
-    }
-
-    .section {
-      padding: 65px 7%;
-      text-align: center;
-    }
-
-    .section h2 {
-      font-size: 29px;
-      margin-bottom: 12px;
-    }
-
-    .subtitle {
-      color: #747e90;
-      margin-bottom: 35px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .feature {
-      background: white;
-      padding: 28px 20px;
-      border: 1px solid #e9ebf1;
-      border-radius: 15px;
-      text-align: right;
-    }
-
-    .feature .symbol {
-      font-size: 27px;
-      margin-bottom: 10px;
-    }
-
-    .feature h3 {
-      margin-bottom: 8px;
-      color: #142342;
-    }
-
-    .feature p {
-      color: #778094;
-      font-size: 14px;
-    }
-
-    .price {
-      background: #fff;
-      max-width: 430px;
-      margin: 25px auto 0;
-      padding: 35px 25px;
-      border: 1px solid #e5d6b2;
-      border-radius: 18px;
-    }
-
-    .price strong {
-      display: block;
-      color: #b28d42;
-      font-size: 45px;
-      margin: 10px 0;
-    }
-
-    .price small {
-      color: #7a8393;
-    }
-
-    footer {
-      background: #101b35;
-      color: #cbd2df;
-      padding: 25px 6%;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    footer span {
-      color: #e3c477;
-    }
-
-    @media (max-width: 600px) {
-      .hero {
-        padding: 65px 6%;
-      }
-
-      .section {
-        padding: 48px 6%;
-      }
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#071426;
+  --navy2:#10243d;
+  --gold:#d6ad55;
+  --gold2:#f0d28b;
+  --bg:#f5f6fa;
+}
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:#17243a;
+  line-height:1.8;
+}
+header{
+  background:var(--navy);
+  color:white;
+  padding:17px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo{font-size:27px;font-weight:bold;letter-spacing:1px}
+.logo span{color:var(--gold)}
+.brand{font-size:10px;color:#b8c2d1;letter-spacing:2px}
+nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+nav a{
+  color:#e5eaf1;
+  text-decoration:none;
+  font-size:13px;
+}
+nav a:hover{color:var(--gold2)}
+.btn{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--navy);
+  text-decoration:none;
+  padding:11px 22px;
+  border-radius:8px;
+  font-weight:bold;
+  border:1px solid var(--gold);
+  transition:.2s;
+}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;
+  color:var(--gold2);
+  border-color:var(--gold);
+}
+.hero{
+  background:
+  radial-gradient(circle at 50% 0%,#203b60 0%,transparent 55%),
+  linear-gradient(135deg,var(--navy),#142b49);
+  color:white;
+  padding:90px 7% 100px;
+  text-align:center;
+}
+.tag{
+  display:inline-block;
+  border:1px solid #a88b50;
+  color:var(--gold2);
+  padding:5px 17px;
+  border-radius:30px;
+  font-size:12px;
+  margin-bottom:22px;
+}
+h1{
+  font-size:clamp(32px,6vw,55px);
+  line-height:1.5;
+  margin-bottom:17px;
+}
+h1 span{color:var(--gold2)}
+.hero p{
+  color:#cbd5e3;
+  max-width:650px;
+  margin:0 auto 30px;
+  font-size:15px;
+}
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.section{
+  padding:65px 7%;
+  text-align:center;
+}
+.section h2{font-size:28px;margin-bottom:10px}
+.subtitle{color:#778195;font-size:14px;margin-bottom:35px}
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+  max-width:1050px;
+  margin:auto;
+}
+.feature{
+  background:white;
+  padding:27px 21px;
+  border:1px solid #e7e9ef;
+  border-radius:14px;
+  text-align:right;
+  transition:.2s;
+}
+.feature:hover{
+  transform:translateY(-4px);
+  border-color:#d6ad55;
+}
+.symbol{font-size:28px;margin-bottom:9px}
+.feature h3{font-size:17px;margin-bottom:7px}
+.feature p{font-size:13px;color:#778195}
+.price{
+  background:white;
+  max-width:440px;
+  margin:25px auto 0;
+  padding:35px 25px;
+  border:1px solid #e6d4aa;
+  border-radius:17px;
+  box-shadow:0 10px 35px #0714260b;
+}
+.price strong{
+  display:block;
+  color:#b18b40;
+  font-size:45px;
+  margin:12px 0;
+}
+.price small{color:#778195}
+.price .btn{margin-top:20px}
+.note{font-size:12px;color:#8790a0;margin-top:12px}
+.cta{
+  background:var(--navy2);
+  color:white;
+  padding:45px 20px;
+  text-align:center;
+}
+.cta p{color:#c7d0df;margin:10px 0 22px;font-size:14px}
+footer{
+  background:var(--navy);
+  color:#cbd2df;
+  text-align:center;
+  padding:27px 15px;
+  font-size:12px;
+}
+footer .logo{margin-bottom:7px}
+footer span{color:var(--gold)}
+@media(max-width:600px){
+  header{padding:15px 5%}
+  nav{gap:12px}
+  nav a{font-size:12px}
+  .hero{padding:65px 6% 75px}
+  .section{padding:48px 6%}
+  .section h2{font-size:24px}
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <div>
-      <div class="logo">DOKKANI<span>.</span></div>
-      <div class="brand">A PROJECT BY SZ11</div>
-    </div>
-    <a class="button" href="#price">ابدأ الآن</a>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="tag">منصتك التجارية الجديدة</div>
-      <h1>امتلك متجرك الإلكتروني<br><span>وابدأ تجارتك بثقة</span></h1>
-      <p>
-        أنشئ متجرك الخاص، اعرض منتجاتك، واستقبل طلبات زبائنك.
-        كل ما تحتاجه لتبدأ تجارتك في مكان واحد.
-      </p>
-      <a href="#price" class="button">اكتشف العرض</a>
-    </section>
-
-    <section class="section">
-      <h2>تجارتك تستحق الأفضل</h2>
-      <p class="subtitle">أدوات بسيطة لمساعدتك على بناء متجرك وإدارته.</p>
-
-      <div class="features">
-        <div class="feature">
-          <div class="symbol">🏪</div>
-          <h3>متجرك الخاص</h3>
-          <p>احصل على صفحة مستقلة تعرض فيها منتجاتك باسم متجرك.</p>
-        </div>
-
-        <div class="feature">
-          <div class="symbol">📦</div>
-          <h3>إدارة المنتجات</h3>
-          <p>نظّم منتجاتك وأسعارك وصورك في مكان واحد.</p>
-        </div>
-
-        <div class="feature">
-          <div class="symbol">📊</div>
-          <h3>لوحة تحكم</h3>
-          <p>تابع طلبات زبائنك وأدر متجرك بسهولة.</p>
-        </div>
-
-        <div class="feature">
-          <div class="symbol">🔗</div>
-          <h3>رابط خاص</h3>
-          <p>شارك رابط متجرك مع زبائنك على مواقع التواصل.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="price">
-      <h2>ابدأ بسعر بسيط</h2>
-      <p class="subtitle">امتلك متجرك بدفعة واحدة حسب العرض المعلن.</p>
-
-      <div class="price">
-        <h3>إنشاء متجر</h3>
-        <strong>10 دراهم</strong>
-        <small>دفعة واحدة، وليس اشتراكاً شهرياً.</small>
-        <br><br>
-        <a href="#contact" class="button">قريباً: إنشاء متجرك</a>
-      </div>
-    </section>
-  </main>
-
-  <footer id="contact">
+<header>
+  <div>
     <div class="logo">DOKKANI<span>.</span></div>
-    <p>منصة تجارية من تطوير SZ11</p>
-    <p>© 2026 DOKKANI. جميع الحقوق محفوظة.</p>
-  </footer>
+    <div class="brand">A PROJECT BY SZ11</div>
+  </div>
+
+  <nav>
+    <a href="#features">المميزات</a>
+    <a href="#price">الأسعار</a>
+    <a href="login.html">دخول البائع</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="tag">منصة التجارة الرقمية المغربية</div>
+
+  <h1>
+    تجارتك تبدأ من هنا<br>
+    <span>ومتجرك أصبح بين يديك</span>
+  </h1>
+
+  <p>
+    أنشئ متجرك الإلكتروني الخاص، اعرض منتجاتك،
+    واستقبل طلبات زبائنك بسهولة.
+    امنح تجارتك حضوراً رقمياً مع DOKKANI.
+  </p>
+
+  <div class="actions">
+    <a href="#price" class="btn">افتح متجرك الآن</a>
+    <a href="store.html?slug=sz11" class="btn btn-outline">
+      اكتشف المتجر التجريبي
+    </a>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <h2>كل ما تحتاجه تجارتك</h2>
+  <p class="subtitle">أدوات عملية لتبدأ وتدير تجارتك من مكان واحد.</p>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="symbol">🏪</div>
+      <h3>متجرك الخاص</h3>
+      <p>صفحة مستقلة باسم متجرك ورابط يمكنك مشاركته مع زبائنك.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">📦</div>
+      <h3>إدارة المنتجات</h3>
+      <p>أضف منتجاتك وحدد أسعارها وصورها ووصفها.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">📊</div>
+      <h3>لوحة التحكم</h3>
+      <p>تابع طلبات الزبائن وأدر متجرك من لوحة واحدة.</p>
+    </div>
+
+    <div class="feature">
+      <div class="symbol">📱</div>
+      <h3>طلبات واتساب</h3>
+      <p>استقبل طلبات زبائنك وسهّل التواصل معهم عبر واتساب.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="price">
+  <h2>ابدأ تجارتك اليوم</h2>
+  <p class="subtitle">سعر واضح، دون اشتراك شهري حسب العرض الحالي.</p>
+
+  <div class="price">
+    <h3>فتح متجر جديد</h3>
+    <strong>10 دراهم</strong>
+    <small>دفعة واحدة حسب العرض المعلن.</small>
+    <br>
+    <a href="register.html" class="btn">أنشئ حسابك وافتح متجرك</a>
+    <p class="note">يتم تفعيل المتجر بعد التحقق من الدفع.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>مستعد للانطلاق؟</h2>
+  <p>ابدأ خطوتك الأولى نحو تجارتك الرقمية.</p>
+  <a href="register.html" class="btn">ابدأ مع DOKKANI</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">DOKKANI<span>.</span></div>
+  <p>منصة تجارية من تطوير SZ11</p>
+  <p>© 2026 DOKKANI. جميع الحقوق محفوظة.</p>
+</footer>
 
 </body>
 </html>
+
