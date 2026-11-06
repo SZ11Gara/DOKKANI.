@@ -6,151 +6,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071426">
 <title>اكتشف المتاجر | DOKKANI</title>
+
 <style>
-:root{
-  --navy:#071426;
-  --navy2:#10243d;
-  --gold:#d6ad55;
-  --gold2:#f0d28b;
-  --bg:#f5f6f8;
+:root {
+  --navy: #071426;
+  --navy2: #10243d;
+  --gold: #d6ad55;
+  --gold2: #f0d28b;
+  --bg: #f5f6f8;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:#172338;
+
+* {
+  box-sizing: border-box;
 }
-header{
-  background:var(--navy);
-  color:white;
-  padding:20px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: #172338;
 }
-.logo{
-  color:var(--gold);
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:2px;
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
-header a{
-  color:white;
-  text-decoration:none;
-  margin-right:15px;
+
+.logo {
+  color: var(--gold);
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
-.hero{
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-  color:white;
-  text-align:center;
-  padding:65px 20px;
+
+header nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
 }
-.hero h1{font-size:34px;margin:0 0 14px}
-.hero p{color:#d4dbea;line-height:1.8}
-.gold{color:var(--gold2)}
-.search{
-  max-width:550px;
-  margin:28px auto 0;
-  display:flex;
-  gap:8px;
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
 }
-.search input{
-  flex:1;
-  min-width:0;
-  padding:15px;
-  border:0;
-  border-radius:10px;
-  font-size:15px;
-  outline:none;
+
+.hero {
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  color: white;
+  text-align: center;
+  padding: 65px 20px;
 }
-.search button{
-  border:0;
-  background:var(--gold);
-  color:var(--navy);
-  font-weight:bold;
-  padding:0 20px;
-  border-radius:10px;
+
+.hero h1 {
+  font-size: 34px;
+  margin: 0 0 14px;
 }
-main{
-  max-width:1100px;
-  margin:40px auto;
-  padding:0 18px;
+
+.gold {
+  color: var(--gold2);
 }
-.heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:20px;
+
+.hero p {
+  color: #d4dbea;
+  line-height: 1.8;
 }
-.heading h2{margin:0;color:var(--navy)}
-.count{color:#777;font-size:13px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:18px;
+
+.search {
+  max-width: 550px;
+  margin: 28px auto 0;
+  display: flex;
+  gap: 8px;
 }
-.card{
-  background:white;
-  border:1px solid #e8e8e8;
-  border-radius:15px;
-  padding:22px;
-  box-shadow:0 5px 20px #0714260a;
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
 }
-.store-icon{
-  width:55px;height:55px;
-  border-radius:13px;
-  background:var(--navy);
-  color:var(--gold);
-  display:grid;
-  place-items:center;
-  font-size:25px;
-  margin-bottom:15px;
+
+.search button {
+  border: 0;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: bold;
+  padding: 0 20px;
+  border-radius: 10px;
+  cursor: pointer;
 }
-.card h3{margin:0 0 10px;color:var(--navy)}
-.card p{color:#777;font-size:14px;line-height:1.7}
-.visit{
-  display:block;
-  text-align:center;
-  background:var(--navy);
-  color:var(--gold2);
-  padding:12px;
-  border-radius:9px;
-  text-decoration:none;
-  font-weight:bold;
-  margin-top:18px;
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 18px;
 }
-.visit:hover{background:var(--navy2)}
-.message{
-  text-align:center;
-  padding:35px 10px;
-  color:#777;
-  grid-column:1/-1;
-  line-height:1.8;
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-footer{
-  background:var(--navy);
-  color:#c4ccda;
-  text-align:center;
-  padding:25px 15px;
-  margin-top:60px;
-  font-size:13px;
+
+.heading h2 {
+  margin: 0;
+  color: var(--navy);
 }
-footer strong{color:var(--gold)}
-@media(max-width:500px){
-  .hero h1{font-size:27px}
-  .search button{padding:0 13px}
+
+.count {
+  color: #777;
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 15px;
+  padding: 22px;
+  box-shadow: 0 5px 20px #0714260a;
+}
+
+.store-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 13px;
+  background: var(--navy);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  color: var(--navy);
+}
+
+.card p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.visit {
+  display: block;
+  text-align: center;
+  background: var(--navy);
+  color: var(--gold2);
+  padding: 12px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.visit:hover {
+  background: var(--navy2);
+}
+
+.message {
+  text-align: center;
+  padding: 35px 10px;
+  color: #777;
+  grid-column: 1 / -1;
+  line-height: 1.8;
+}
+
+footer {
+  background: var(--navy);
+  color: #c4ccda;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 60px;
+  font-size: 13px;
+}
+
+footer strong {
+  color: var(--gold);
+}
+
+@media(max-width: 500px) {
+  .hero h1 {
+    font-size: 27px;
+  }
+
+  .search button {
+    padding: 0 13px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header>
   <div class="logo">DOKKANI</div>
+
   <nav>
     <a href="index.html">الرئيسية</a>
     <a href="login.html">دخول البائع</a>
@@ -160,9 +230,13 @@ footer strong{color:var(--gold)}
 <section class="hero">
   <h1>اكتشف <span class="gold">متاجر DOKKANI</span></h1>
   <p>تصفح المتاجر المغربية واكتشف منتجاتها في مكان واحد.</p>
+
   <div class="search">
-    <input id="searchInput" type="search"
-      placeholder="ابحث عن متجر...">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="ابحث عن متجر..."
+    >
     <button id="searchButton">بحث</button>
   </div>
 </section>
@@ -172,6 +246,7 @@ footer strong{color:var(--gold)}
     <h2>المتاجر المتاحة</h2>
     <span class="count" id="count">جاري التحميل...</span>
   </div>
+
   <section class="grid" id="stores">
     <div class="message">جاري تحميل المتاجر...</div>
   </section>
@@ -184,12 +259,13 @@ footer strong{color:var(--gold)}
 
 <script type="module">
 import { db } from "./firebase.js";
+
 import {
   collection,
   getDocs,
   query,
   where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 
 const container = document.getElementById("stores");
 const count = document.getElementById("count");
@@ -198,7 +274,7 @@ const button = document.getElementById("searchButton");
 
 let allStores = [];
 
-function renderStores(){
+function renderStores() {
   const term = input.value.trim().toLowerCase();
 
   const filtered = allStores.filter(store =>
@@ -207,7 +283,7 @@ function renderStores(){
 
   count.textContent = filtered.length + " متجر";
 
-  if(!filtered.length){
+  if (filtered.length === 0) {
     container.innerHTML =
       '<div class="message">لا توجد متاجر مطابقة لبحثك حالياً.</div>';
     return;
@@ -232,15 +308,17 @@ function renderStores(){
     const link = document.createElement("a");
     link.className = "visit";
     link.textContent = "زيارة المتجر";
-    link.href = "store.html?slug=" + encodeURIComponent(store.slug || "");
+
+    link.href =
+      "store.html?slug=" + encodeURIComponent(store.slug || "");
 
     card.append(icon, title, description, link);
     container.appendChild(card);
   });
 }
 
-async function loadStores(){
-  try{
+async function loadStores() {
+  try {
     const storesQuery = query(
       collection(db, "stores"),
       where("status", "==", "active")
@@ -251,11 +329,14 @@ async function loadStores(){
     allStores = snapshot.docs.map(doc => doc.data());
 
     renderStores();
-  }catch(error){
-    console.error(error);
+
+  } catch (error) {
+    console.error("DOKKANI Firebase Error:", error);
+
     count.textContent = "";
+
     container.innerHTML =
-      '<div class="message">تعذر تحميل المتاجر. تحقق من الاتصال وحاول مجدداً.</div>';
+      '<div class="message">تعذر تحميل المتاجر. حاول تحديث الصفحة أو تحقق من إعدادات Firebase.</div>';
   }
 }
 
@@ -267,3 +348,4 @@ loadStores();
 
 </body>
 </html>
+
