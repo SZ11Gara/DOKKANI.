@@ -6,311 +6,105 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071426">
 <title>DOKKANI | منصتك للتجارة الرقمية</title>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
- --navy:#071426;
- --navy2:#102642;
- --gold:#d6ad55;
- --gold2:#f1d58e;
- --white:#fff;
- --gray:#aebbd0;
-}
-body{
- font-family:Tahoma,Arial,sans-serif;
- background:#f6f7fa;
- color:#17243a;
- line-height:1.8;
-}
+:root{--navy:#071426;--navy2:#102642;--gold:#d6ad55;--gold2:#f1d58e}
+body{font-family:Tahoma,Arial,sans-serif;background:#f6f7fa;color:#17243a;line-height:1.8}
 a{text-decoration:none}
-header{
- background:var(--navy);
- color:white;
- padding:18px 7%;
- display:flex;
- justify-content:space-between;
- align-items:center;
- flex-wrap:wrap;
- gap:15px;
-}
-.logo{
- font-size:28px;
- font-weight:bold;
- letter-spacing:1px;
-}
+header{background:var(--navy);color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{font-size:28px;font-weight:bold;letter-spacing:1px}
 .logo span{color:var(--gold)}
-.brand{
- color:#9eabc0;
- font-size:10px;
- letter-spacing:2px;
-}
-.nav{
- display:flex;
- align-items:center;
- gap:22px;
- flex-wrap:wrap;
-}
-.nav a{
- color:#e1e7ef;
- font-size:13px;
-}
+.brand{color:#9eabc0;font-size:10px;letter-spacing:2px}
+.nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.nav a{color:#e1e7ef;font-size:13px}
 .nav a:hover{color:var(--gold2)}
-.nav .login{
- border:1px solid var(--gold);
- padding:8px 17px;
- border-radius:7px;
-}
-.hero{
- background:
- radial-gradient(ellipse at top,#203b60 0%,transparent 65%),
- linear-gradient(135deg,#071426,#132c49);
- color:white;
- text-align:center;
- padding:100px 7% 110px;
-}
-.label{
- display:inline-block;
- color:var(--gold2);
- border:1px solid #9d8046;
- padding:5px 18px;
- border-radius:30px;
- font-size:12px;
- margin-bottom:25px;
-}
-.hero h1{
- font-size:clamp(34px,6vw,58px);
- line-height:1.5;
- margin-bottom:20px;
-}
+.nav .login{border:1px solid var(--gold);padding:8px 17px;border-radius:7px}
+.hero{background:radial-gradient(ellipse at top,#203b60 0%,transparent 65%),linear-gradient(135deg,#071426,#132c49);color:white;text-align:center;padding:100px 7% 110px}
+.label{display:inline-block;color:var(--gold2);border:1px solid #9d8046;padding:5px 18px;border-radius:30px;font-size:12px;margin-bottom:25px}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.5;margin-bottom:20px}
 .hero h1 span{color:var(--gold2)}
-.hero p{
- max-width:650px;
- margin:0 auto 32px;
- color:var(--gray);
- font-size:15px;
-}
-.buttons{
- display:flex;
- justify-content:center;
- gap:13px;
- flex-wrap:wrap;
-}
-.btn{
- display:inline-block;
- padding:12px 25px;
- border-radius:8px;
- font-weight:bold;
- transition:.2s;
-}
-.btn-gold{
- background:var(--gold);
- color:var(--navy);
-}
+.hero p{max-width:650px;margin:0 auto 32px;color:#aebbd0;font-size:15px}
+.buttons{display:flex;justify-content:center;gap:13px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 25px;border-radius:8px;font-weight:bold;transition:.2s}
+.btn-gold{background:var(--gold);color:var(--navy)}
 .btn-gold:hover{background:var(--gold2)}
-.btn-light{
- border:1px solid var(--gold);
- color:var(--gold2);
-}
-.section{
- padding:75px 7%;
- text-align:center;
-}
-.section h2{
- font-size:29px;
- margin-bottom:10px;
-}
-.sub{
- color:#7d8798;
- font-size:14px;
- margin-bottom:38px;
-}
-.cards{
- max-width:1100px;
- margin:auto;
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:20px;
-}
-.card{
- background:white;
- padding:30px 22px;
- border:1px solid #e8eaf0;
- border-radius:14px;
- text-align:right;
- transition:.2s;
-}
-.card:hover{
- transform:translateY(-5px);
- border-color:var(--gold);
-}
-.icon{
- font-size:30px;
- margin-bottom:12px;
-}
+.btn-light{border:1px solid var(--gold);color:var(--gold2)}
+.section{padding:75px 7%;text-align:center}
+.section h2{font-size:29px;margin-bottom:10px}
+.sub{color:#7d8798;font-size:14px;margin-bottom:38px}
+.cards{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:white;padding:30px 22px;border:1px solid #e8eaf0;border-radius:14px;text-align:right;transition:.2s}
+.card:hover{transform:translateY(-5px);border-color:var(--gold)}
+.icon{font-size:30px;margin-bottom:12px}
 .card h3{margin-bottom:8px;font-size:17px}
 .card p{font-size:13px;color:#7b8494}
-.price-box{
- max-width:440px;
- margin:auto;
- background:white;
- padding:38px 25px;
- border:1px solid #e6d5ae;
- border-radius:17px;
- box-shadow:0 12px 35px #0714260c;
-}
-.price-box h3{font-size:19px}
-.price{
- color:#b38d42;
- font-size:48px;
- font-weight:bold;
- margin:12px 0;
-}
-.price-box p{
- color:#788294;
- font-size:13px;
-}
-.price-box .btn{margin-top:23px}
-.final{
- background:var(--navy2);
- color:white;
- text-align:center;
- padding:55px 20px;
-}
+.free-box{max-width:500px;margin:auto;background:white;padding:35px 25px;border:1px solid #e6d5ae;border-radius:17px;box-shadow:0 12px 35px #0714260c}
+.free-box h3{font-size:21px}
+.free{color:#b38d42;font-size:38px;font-weight:bold;margin:12px 0}
+.free-box p{color:#788294;font-size:14px}
+.free-box .btn{margin-top:22px}
+.final{background:var(--navy2);color:white;text-align:center;padding:55px 20px}
 .final h2{font-size:27px}
-.final p{
- color:#c2cede;
- margin:10px 0 25px;
- font-size:14px;
-}
-footer{
- background:var(--navy);
- color:#aebbd0;
- text-align:center;
- padding:30px 15px;
- font-size:12px;
-}
+.final p{color:#c2cede;margin:10px 0 25px;font-size:14px}
+footer{background:var(--navy);color:#aebbd0;text-align:center;padding:30px 15px;font-size:12px}
 footer .logo{margin-bottom:8px}
 footer span{color:var(--gold)}
-@media(max-width:600px){
- header{padding:15px 5%}
- .nav{gap:12px}
- .nav a{font-size:12px}
- .hero{padding:70px 6% 80px}
- .section{padding:55px 6%}
- .section h2{font-size:25px}
-}
+@media(max-width:600px){header{padding:15px 5%}.nav{gap:12px}.nav a{font-size:12px}.hero{padding:70px 6% 80px}.section{padding:55px 6%}.section h2{font-size:25px}}
 </style>
 </head>
-
 <body>
-
 <header>
  <div>
   <div class="logo">DOKKANI<span>.</span></div>
   <div class="brand">A PROJECT BY SZ11</div>
  </div>
-
  <nav class="nav">
   <a href="#features">المميزات</a>
-  <a href="#price">الأسعار</a>
+  <a href="#price">الاشتراك</a>
   <a href="login.html" class="login">دخول البائع</a>
  </nav>
 </header>
-
 <main>
-
 <section class="hero">
  <div class="label">منصة التجارة الرقمية</div>
-
- <h1>
-  أنشئ متجرك الإلكتروني<br>
-  <span>وانطلق نحو عالم التجارة</span>
- </h1>
-
- <p>
-  مع DOKKANI، يمكنك امتلاك متجرك الخاص،
-  عرض منتجاتك، واستقبال طلبات زبائنك
-  من خلال رابط واحد سهل المشاركة.
- </p>
-
+ <h1>أنشئ متجرك الإلكتروني<br><span>وانطلق نحو عالم التجارة</span></h1>
+ <p>مع DOKKANI، يمكنك امتلاك متجرك الخاص، عرض منتجاتك، واستقبال طلبات زبائنك من خلال رابط واحد سهل المشاركة.</p>
  <div class="buttons">
-  <a href="register.html" class="btn btn-gold">
-   افتح متجرك الآن
-  </a>
-
-  <a href="store.html?slug=sz11" class="btn btn-light">
-   اكتشف المتجر التجريبي
-  </a>
+  <a href="register.html" class="btn btn-gold">افتح متجرك مجاناً</a>
+  <a href="store.html?slug=sz11" class="btn btn-light">اكتشف المتجر التجريبي</a>
  </div>
 </section>
-
 <section class="section" id="features">
  <h2>تجارتك تستحق الأفضل</h2>
  <p class="sub">كل الأدوات الأساسية لإدارة متجرك بسهولة.</p>
-
  <div class="cards">
-
-  <div class="card">
-   <div class="icon">🏪</div>
-   <h3>متجرك الخاص</h3>
-   <p>امتلك صفحة مستقلة تحمل اسم متجرك وتعرض منتجاتك.</p>
-  </div>
-
-  <div class="card">
-   <div class="icon">📦</div>
-   <h3>إدارة المنتجات</h3>
-   <p>أضف منتجاتك وصورها وأسعارها بكل سهولة.</p>
-  </div>
-
-  <div class="card">
-   <div class="icon">📊</div>
-   <h3>لوحة التحكم</h3>
-   <p>تابع طلبات زبائنك وأدر متجرك من مكان واحد.</p>
-  </div>
-
-  <div class="card">
-   <div class="icon">📱</div>
-   <h3>طلبات واتساب</h3>
-   <p>سهّل على زبائنك إرسال طلباتهم والتواصل معك.</p>
-  </div>
-
+  <div class="card"><div class="icon">🏪</div><h3>متجرك الخاص</h3><p>امتلك صفحة مستقلة تحمل اسم متجرك وتعرض منتجاتك.</p></div>
+  <div class="card"><div class="icon">📦</div><h3>إدارة المنتجات</h3><p>أضف منتجاتك وصورها وأسعارها بكل سهولة.</p></div>
+  <div class="card"><div class="icon">📊</div><h3>لوحة التحكم</h3><p>تابع طلبات زبائنك وأدر متجرك من مكان واحد.</p></div>
+  <div class="card"><div class="icon">📱</div><h3>طلبات واتساب</h3><p>سهّل على زبائنك إرسال طلباتهم والتواصل معك.</p></div>
  </div>
 </section>
-
 <section class="section" id="price">
- <h2>سعر بسيط للانطلاق</h2>
- <p class="sub">ابدأ تجارتك الرقمية دون اشتراك شهري حسب العرض الحالي.</p>
-
- <div class="price-box">
+ <h2>انطلق دون تكاليف</h2>
+ <p class="sub">نريد أن نساعدك على بدء تجارتك الرقمية.</p>
+ <div class="free-box">
   <h3>فتح متجر جديد</h3>
-  <div class="price">10 دراهم</div>
-  <p>دفعة واحدة حسب العرض المعلن.</p>
-  <a href="register.html" class="btn btn-gold">
-   أنشئ حسابك الآن
-  </a>
-  <p style="margin-top:15px">
-   يتم تفعيل المتجر بعد التحقق من الدفع.
-  </p>
+  <div class="free">مجاني 100%</div>
+  <p>لا رسوم فتح متجر ولا اشتراك شهري خلال مرحلة الإطلاق.</p>
+  <a href="register.html" class="btn btn-gold">أنشئ حسابك الآن</a>
  </div>
 </section>
-
 <section class="final">
  <h2>خطوتك الأولى تبدأ هنا</h2>
  <p>امنح تجارتك حضوراً رقمياً مع DOKKANI.</p>
- <a href="register.html" class="btn btn-gold">
-  انضم إلى DOKKANI
- </a>
+ <a href="register.html" class="btn btn-gold">انضم إلى DOKKANI</a>
 </section>
-
 </main>
-
 <footer>
  <div class="logo">DOKKANI<span>.</span></div>
  <p>منصة تجارية من تطوير SZ11</p>
  <p>© 2026 DOKKANI. جميع الحقوق محفوظة.</p>
 </footer>
-
 </body>
 </html>
 
